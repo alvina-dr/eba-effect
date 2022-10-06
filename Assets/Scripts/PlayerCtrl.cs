@@ -1,21 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCtrl : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public float throwPower;
     public float throwUpwardPower;
+    public InputActionReference rightTrigger = null;
+    public Vector3 throwDirection;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Throw();
-        }
-        MoveCamera();
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    Throw();
+        //}
+        //if (OculusInputSystem.)
+        //{
+        //    Throw();
+        //}
+        //MoveCamera();
     }
+
+    public void OnShoot()
+    {
+        Throw();
+    }
+
+    public void OnAim(InputValue input)
+    {
+        throwDirection = input.Get<Vector3>();
+    }
+
 
     public void Throw()
     {

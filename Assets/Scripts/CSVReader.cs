@@ -17,7 +17,7 @@ public class CSVReader : MonoBehaviour
 
     public void Start()
     {
-        ReadCSV();
+        //ReadCSV();
     }
 
     public void ReadCSV()

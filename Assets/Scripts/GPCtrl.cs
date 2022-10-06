@@ -12,10 +12,10 @@ public class GPCtrl : MonoBehaviour
     //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            CreateTarget();
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    CreateTarget();
+        //}
         if (currentTime >= targetFrequence)
         {
             CreateTarget();
@@ -23,6 +23,7 @@ public class GPCtrl : MonoBehaviour
         }
         currentTime += Time.deltaTime;
     }
+
 
     public void CreateTarget()
     {
