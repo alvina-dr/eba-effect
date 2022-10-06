@@ -16,9 +16,9 @@
                 },
                 {
                     "name": "Aim",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "5542de81-3a0f-46e7-882d-6dabe9335873",
-                    "expectedControlType": "Vector3",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
@@ -37,26 +37,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "3D Vector",
-                    "id": "bfe5bd0e-c70a-45b5-97a2-aa3c234f007b",
-                    "path": "3DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "forward",
-                    "id": "c066308f-1da7-4cc8-ae98-58ad12cf48fa",
-                    "path": "<XRController>{RightHand}/isTracked",
+                    "name": "",
+                    "id": "9294f58c-eea0-41cd-b797-2dd86131c57e",
+                    "path": "<XRController>{RightHand}/devicePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class ProjectileCtrl : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    public float lifeDuration;
 
     void Update()
     {
-        if (Time.deltaTime == 3f)
+        if (Time.deltaTime == lifeDuration)
         {
             Destroy(gameObject);
         }

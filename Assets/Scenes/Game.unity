@@ -1169,7 +1169,9 @@ MonoBehaviour:
     type: 3}
   throwPower: 40
   throwUpwardPower: 4
-  rightTrigger: {fileID: 0}
+  throwDirection: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  rightController: {fileID: 168444637}
 --- !u!4 &1509384436
 Transform:
   m_ObjectHideFlags: 0
