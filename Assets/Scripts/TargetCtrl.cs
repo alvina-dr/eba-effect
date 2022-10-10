@@ -5,10 +5,18 @@ using UnityEngine;
 public class TargetCtrl : MonoBehaviour
 {
     public TargetData targetData;
-    public float _chrono;
+    float _chrono;
+    private GPCtrl GP;
+
+    private void Start()
+    {
+        GP = FindObjectOfType<GPCtrl>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        GP.Player.currentScore = GP.Player.currentScore + 100;
+        GP.UI.UpdateScore(GP.Player.currentScore);
         Destroy(other.gameObject);
         Destroy(gameObject);
     }

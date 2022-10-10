@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class GPCtrl : MonoBehaviour
 {
-
-    public GameObject targetPrefab;
-    public float currentTime;
-    public float targetFrequence;
     public CSVReader CSV;
-    public int targetIncrement;
-    public float _chrono;
-    public bool levelEnded = false;
+    public VibrationCtrl Vibration;
+    public PlayerCtrl Player;
+    public UICtrl UI;
+    [SerializeField] GameObject targetPrefab;
+    [SerializeField] float targetFrequence;
+    [SerializeField] int targetIncrement;
+    [SerializeField] float _chrono;
+    [SerializeField] bool levelEnded = false;
 
 
     public void Start()
     {
         CSV = GetComponent<CSVReader>();   
+        Vibration = GetComponent<VibrationCtrl>();   
+        Player = FindObjectOfType<PlayerCtrl>();   
+        UI = FindObjectOfType<UICtrl>();   
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
@@ -44,7 +48,6 @@ public class GPCtrl : MonoBehaviour
 
     public void CreateTarget(TargetData _targetData)
     {
-        //Vector3 _position = new Vector3(Random.Range(-3, 3), Random.Range(-1, 3), 0);
         TargetCtrl _target = Instantiate(targetPrefab).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;

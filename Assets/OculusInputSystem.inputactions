@@ -6,7 +6,7 @@
             "id": "a468e2da-7b57-49fb-891f-7b84ece9c318",
             "actions": [
                 {
-                    "name": "Shoot",
+                    "name": "ShootRight",
                     "type": "Button",
                     "id": "eeb5e412-c8b8-466f-9296-02a943b93298",
                     "expectedControlType": "Button",
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ShootLeft",
+                    "type": "Button",
+                    "id": "ff627892-ea5a-426a-bae4-ae728fc60de3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -32,7 +41,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -44,6 +53,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f9c4ae7-940d-463f-803d-5128f5679eb3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16ac4f52-23a1-4229-b19d-9f60659940d1",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

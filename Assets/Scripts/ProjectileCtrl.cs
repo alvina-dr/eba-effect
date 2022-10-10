@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileCtrl : MonoBehaviour
 {
-    public float lifeDuration;
+     [SerializeField] float lifeDuration;
 
     void Update()
     {

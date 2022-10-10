@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.XR.Management;
 using UnityEngine.SpatialTracking;
+using UnityEngine.InputSystem;
 #else
 using UnityEngine.XR.Management;
 #endif

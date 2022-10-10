@@ -28,7 +28,7 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
             ""id"": ""a468e2da-7b57-49fb-891f-7b84ece9c318"",
             ""actions"": [
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""ShootRight"",
                     ""type"": ""Button"",
                     ""id"": ""eeb5e412-c8b8-466f-9296-02a943b93298"",
                     ""expectedControlType"": ""Button"",
@@ -44,6 +44,15 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ShootLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff627892-ea5a-426a-bae4-ae728fc60de3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -54,7 +63,7 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -68,6 +77,28 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f9c4ae7-940d-463f-803d-5128f5679eb3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16ac4f52-23a1-4229-b19d-9f60659940d1"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -76,8 +107,9 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_ShootRight = m_Player.FindAction("ShootRight", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_ShootLeft = m_Player.FindAction("ShootLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -137,14 +169,16 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_ShootRight;
     private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_ShootLeft;
     public struct PlayerActions
     {
         private @OculusInputSystem m_Wrapper;
         public PlayerActions(@OculusInputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @ShootRight => m_Wrapper.m_Player_ShootRight;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @ShootLeft => m_Wrapper.m_Player_ShootLeft;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -154,29 +188,36 @@ public partial class @OculusInputSystem : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @ShootRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootRight;
+                @ShootRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootRight;
+                @ShootRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootRight;
                 @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @ShootLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootLeft;
+                @ShootLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootLeft;
+                @ShootLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootLeft;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
+                @ShootRight.started += instance.OnShootRight;
+                @ShootRight.performed += instance.OnShootRight;
+                @ShootRight.canceled += instance.OnShootRight;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @ShootLeft.started += instance.OnShootLeft;
+                @ShootLeft.performed += instance.OnShootLeft;
+                @ShootLeft.canceled += instance.OnShootLeft;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnShoot(InputAction.CallbackContext context);
+        void OnShootRight(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnShootLeft(InputAction.CallbackContext context);
     }
 }
