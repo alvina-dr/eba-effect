@@ -15,7 +15,8 @@ public class TargetCtrl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GP.Player.currentScore += 100;
+        int percentage = Mathf.RoundToInt(_chrono / targetData.duration * 100);
+        GP.Player.currentScore += Mathf.RoundToInt(120 * (100-percentage) / 100);
         GP.UI.UpdateScore(GP.Player.currentScore);
         other.GetComponent<ProjectileCtrl>().DeactivateProjectile();
         Destroy(gameObject);
