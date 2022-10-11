@@ -10,7 +10,7 @@ public class UICtrl : MonoBehaviour
 
     private void Start()
     {
-        GP = FindObjectOfType<GPCtrl>();
+        GP = GPCtrl.instance;
         scoreText = GetComponentInChildren<TextMeshProUGUI>();
     }
 

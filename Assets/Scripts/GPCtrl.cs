@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GPCtrl : MonoBehaviour
 {
+    public static GPCtrl instance = null;
     public CSVReader CSV;
     public VibrationCtrl Vibration;
     public PlayerCtrl Player;
     public UICtrl UI;
+    public ProjectilePool Projectile;
     [SerializeField] GameObject targetPrefab;
     [SerializeField] float targetFrequence;
     [SerializeField] int targetIncrement;
@@ -15,12 +17,26 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] bool levelEnded = false;
 
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Start()
     {
         CSV = GetComponent<CSVReader>();   
         Vibration = GetComponent<VibrationCtrl>();   
         Player = FindObjectOfType<PlayerCtrl>();   
-        UI = FindObjectOfType<UICtrl>();   
+        UI = FindObjectOfType<UICtrl>();
+        Projectile = FindObjectOfType<ProjectilePool>();   
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl

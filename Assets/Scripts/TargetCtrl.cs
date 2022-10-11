@@ -10,14 +10,14 @@ public class TargetCtrl : MonoBehaviour
 
     private void Start()
     {
-        GP = FindObjectOfType<GPCtrl>();
+        GP = GPCtrl.instance;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        GP.Player.currentScore = GP.Player.currentScore + 100;
+        GP.Player.currentScore += 100;
         GP.UI.UpdateScore(GP.Player.currentScore);
-        Destroy(other.gameObject);
+        other.GetComponent<ProjectileCtrl>().DeactivateProjectile();
         Destroy(gameObject);
     }
 

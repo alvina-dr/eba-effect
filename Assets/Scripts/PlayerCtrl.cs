@@ -15,10 +15,11 @@ public class PlayerCtrl : MonoBehaviour
     private LineRenderer rendoRight;
     private LineRenderer rendoLeft;
     public int currentScore = 0;
+    public AudioClip shootSound;
 
     private void Start()
     {
-        GP = FindObjectOfType<GPCtrl>();
+        GP = GPCtrl.instance;
         rendoRight = GP.Vibration.leftController.GetComponent<LineRenderer>();
         rendoLeft = GP.Vibration.rightController.GetComponent<LineRenderer>();
     }
@@ -35,12 +36,14 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootRight()
     {
+        AudioEngine.instance.PlaySound(shootSound, false);
         GP.Vibration.SendHaptics(GP.Vibration.rightController);
-        GameObject _projectile = Instantiate(projectilePrefab);
+        ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
+        _projectile.SetupProjectile();
         _projectile.transform.position = rightController.transform.position;
-        Vector3 _direction = -rightController.transform.forward; 
-        _projectile.GetComponentInChildren<Rigidbody>().AddForce(/*Camera.main.transform.forward*/_direction * throwPower  /*rightController.transform.up*/ /* throwUpwardPower*/, ForceMode.Impulse);
+        Vector3 _direction = -rightController.transform.forward;
         _projectile.transform.forward = -_direction;
+        _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
     }
 
     public void OnShootLeft()
@@ -50,12 +53,14 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootLeft()
     {
+        AudioEngine.instance.PlaySound(shootSound, false);
         GP.Vibration.SendHaptics(GP.Vibration.leftController);
-        GameObject _projectile = Instantiate(projectilePrefab);
+        ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
+        _projectile.SetupProjectile();
         _projectile.transform.position = leftController.transform.position;
         Vector3 _direction = -leftController.transform.forward;
-        _projectile.GetComponentInChildren<Rigidbody>().AddForce(/*Camera.main.transform.forward*/_direction * throwPower  /*rightController.transform.up*/ /* throwUpwardPower*/, ForceMode.Impulse);
-        _projectile.transform.forward = -_direction;
+        _projectile.transform.forward = -_direction /*+ new Vector3(0f, 90f, 90f)*/;
+        _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
     }
 
     public void ShowRaycast(LineRenderer rendo, Vector3 targetPos, Vector3 direction, float length)
