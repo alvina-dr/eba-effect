@@ -25,7 +25,7 @@ public class CSVReader : MonoBehaviour
         for (int i = 0; i < tableSize; i++)
         {
             targetDataList[i] = ScriptableObject.CreateInstance<TargetData>();
-            targetDataList[i].spawnTime = float.Parse(data[3 * (i)]); //first column
+            targetDataList[i].spawnTime = float.Parse(data[3 * (i)])/1000; //first column
             targetDataList[i].duration = float.Parse(data[3 * (i) + 1]); //second column
             string[] _startPosition = data[3 * (i) + 2].Split(new string[] { "f", "\n" }, System.StringSplitOptions.None);
             targetDataList[i].startPosition = new Vector3(float.Parse(_startPosition[0]), float.Parse(_startPosition[1]), 0);  //third column
