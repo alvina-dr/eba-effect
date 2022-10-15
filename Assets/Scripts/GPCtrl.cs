@@ -72,12 +72,12 @@ public class GPCtrl : MonoBehaviour
 
     public void TargetLevelSetup()
     {
-        if (!levelEnded && _chrono >= CSV.targetDataList[targetIncrement].spawnTime - CSV.targetDataList[targetIncrement].duration)
+        if (!levelEnded && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
         {
-            Debug.Log("target : " + CSV.targetDataList[targetIncrement].spawnTime + " | " + CSV.targetDataList[targetIncrement].duration + " | " + CSV.targetDataList[targetIncrement].startPosition);
-            CreateTarget(CSV.targetDataList[targetIncrement]);
+            Debug.Log("target : " + CSV.targetDataArray[targetIncrement].spawnTime + " | " + CSV.targetDataArray[targetIncrement].duration + " | " + CSV.targetDataArray[targetIncrement].startPosition);
+            CreateTarget(CSV.targetDataArray[targetIncrement]);
             targetIncrement++;
-            if ((targetIncrement) == CSV.targetDataList.Length) levelEnded = true;
+            if ((targetIncrement) == CSV.targetDataArray.Length) levelEnded = true;
         }
     }
 
