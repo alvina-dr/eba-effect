@@ -32,7 +32,7 @@ public class GPCtrl : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -107,5 +107,6 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.transform.DOScale(1, 0.5f);
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);
+
     }
 }

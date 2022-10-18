@@ -12,8 +12,6 @@ public class PlayerCtrl : MonoBehaviour
     public Vector3 throwDirection;
     [SerializeField] GameObject rightController;
     [SerializeField] GameObject leftController;
-    private LineRenderer rendoRight;
-    private LineRenderer rendoLeft;
     public int currentScore = 0;
     public int currentCombo = 0;
     public int numTargetDestroyed = 0;
@@ -22,8 +20,6 @@ public class PlayerCtrl : MonoBehaviour
     private void Start()
     {
         GP = GPCtrl.instance;
-        rendoRight = GP.Vibration.leftController.GetComponent<LineRenderer>();
-        rendoLeft = GP.Vibration.rightController.GetComponent<LineRenderer>();
         if (GP.computerMode)
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
@@ -31,8 +27,6 @@ public class PlayerCtrl : MonoBehaviour
     }
     void Update()
     {
-        ShowRaycast(rendoRight, rightController.transform.position, -rightController.transform.forward, 10f);
-        ShowRaycast(rendoLeft, leftController.transform.position, -leftController.transform.forward, 10f);
         if (GP.computerMode)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -56,7 +50,7 @@ public class PlayerCtrl : MonoBehaviour
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
         _projectile.transform.position = rightController.transform.position;
-        Vector3 _direction = -rightController.transform.forward;
+        Vector3 _direction = rightController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
     }
@@ -73,21 +67,9 @@ public class PlayerCtrl : MonoBehaviour
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
         _projectile.transform.position = leftController.transform.position;
-        Vector3 _direction = -leftController.transform.forward;
+        Vector3 _direction = leftController.transform.forward;
         _projectile.transform.forward = -_direction /*+ new Vector3(0f, 90f, 90f)*/;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
-    }
-
-    public void ShowRaycast(LineRenderer rendo, Vector3 targetPos, Vector3 direction, float length)
-    {
-        Ray ray = new Ray(targetPos, direction);
-        Vector3 endPos = targetPos + (direction * length);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, length))
-        {
-            endPos = rayHit.point;
-        }
-        rendo.SetPosition(0, targetPos);
-        rendo.SetPosition(1, endPos);
     }
 
     public void ShootComputer()
