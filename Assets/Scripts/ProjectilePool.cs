@@ -45,7 +45,6 @@ public class ProjectilePool : MonoBehaviour
     public ProjectileCtrl GetProjectile()
     {
         ProjectileCtrl _projectile = bulletPool.Find(x => !x.isActive).GetComponent<ProjectileCtrl>();
-        Debug.Log("this is my projectile name : " + _projectile.name);
         return _projectile;
     }
 }

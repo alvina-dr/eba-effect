@@ -3401,6 +3401,7 @@ MonoBehaviour:
   targetIncrement: 0
   _chrono: 0
   levelEnded: 0
+  computerMode: 1
 --- !u!4 &351964225
 Transform:
   m_ObjectHideFlags: 0
@@ -3429,7 +3430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textAssetData: {fileID: 4900000, guid: 3caa078e3f760c245bdccae73d3183a6, type: 3}
-  targetDataList: []
+  targetDataArray: []
 --- !u!114 &351964227
 MonoBehaviour:
   m_ObjectHideFlags: 0

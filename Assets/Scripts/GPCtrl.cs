@@ -15,6 +15,8 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] int targetIncrement;
     [SerializeField] float _chrono;
     [SerializeField] bool levelEnded = false;
+    [Header("DEBUG TOOLS")]
+    [SerializeField] public bool computerMode;
 
 
     void Awake()
@@ -43,10 +45,6 @@ public class GPCtrl : MonoBehaviour
     void Update()
     {
         _chrono += Time.deltaTime;
-        //if (Input.GetKeyDown(KeyCode.Mouse1))
-        //{
-        //    CreateTarget();
-        //}
         //if (currentTime >= targetFrequence)
         //{
         //    CreateTarget();
