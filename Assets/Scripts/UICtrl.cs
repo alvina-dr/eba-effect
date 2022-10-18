@@ -6,12 +6,13 @@ using TMPro;
 public class UICtrl : MonoBehaviour
 {
     GPCtrl GP;
-    TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI comboText;
 
     private void Start()
     {
         GP = GPCtrl.instance;
-        scoreText = GetComponentInChildren<TextMeshProUGUI>();
+        //scoreText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void UpdateScore(int _score)
@@ -19,5 +20,8 @@ public class UICtrl : MonoBehaviour
         scoreText.text = _score.ToString();
     }
 
-
+    public void UpdateCombo(int _combo)
+    {
+        comboText.text = _combo.ToString();
+    }
 }

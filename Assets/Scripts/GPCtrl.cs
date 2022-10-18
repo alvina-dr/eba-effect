@@ -74,7 +74,7 @@ public class GPCtrl : MonoBehaviour
     {
         if (!levelEnded && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
         {
-            Debug.Log("target : " + CSV.targetDataArray[targetIncrement].spawnTime + " | " + CSV.targetDataArray[targetIncrement].duration + " | " + CSV.targetDataArray[targetIncrement].startPosition);
+            //Debug.Log("target : " + CSV.targetDataArray[targetIncrement].spawnTime + " | " + CSV.targetDataArray[targetIncrement].duration + " | " + CSV.targetDataArray[targetIncrement].startPosition);
             CreateTarget(CSV.targetDataArray[targetIncrement]);
             targetIncrement++;
             if ((targetIncrement) == CSV.targetDataArray.Length) levelEnded = true;
