@@ -31,6 +31,7 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentScore += Mathf.RoundToInt(120 * percentage / 100);
         GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.currentCombo++;
+        GP.Player.numTargetDestroyed++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
         other.GetComponent<ProjectileCtrl>().DeactivateProjectile();
         transform.DOScale(0, 0.3f).OnComplete(() => {

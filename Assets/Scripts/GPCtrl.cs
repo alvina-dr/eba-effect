@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GPCtrl : MonoBehaviour
 {
+    public enum LevelState
+    {
+        Running,
+        Ending,
+        Over
+    }
+
     public static GPCtrl instance = null;
     public CSVReader CSV;
     public VibrationCtrl Vibration;
@@ -14,7 +22,7 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] float targetFrequence;
     [SerializeField] int targetIncrement;
     [SerializeField] float _chrono;
-    [SerializeField] bool levelEnded = false;
+    [SerializeField] LevelState levelState;
     [Header("DEBUG TOOLS")]
     [SerializeField] public bool computerMode;
 
@@ -38,7 +46,8 @@ public class GPCtrl : MonoBehaviour
         Vibration = GetComponent<VibrationCtrl>();   
         Player = FindObjectOfType<PlayerCtrl>();   
         UI = FindObjectOfType<UICtrl>();
-        Projectile = FindObjectOfType<ProjectilePool>();   
+        Projectile = FindObjectOfType<ProjectilePool>();
+        levelState = LevelState.Running;
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
@@ -57,6 +66,11 @@ public class GPCtrl : MonoBehaviour
             //DEBUG MENU
         }
         TargetLevelSetup();
+        if (levelState == LevelState.Ending && FindObjectOfType<TargetCtrl>() == null) //change later when target pool is done | bad
+        {
+            levelState = LevelState.Over;
+            EndLevel();
+        }
     }
 
 
@@ -70,17 +84,28 @@ public class GPCtrl : MonoBehaviour
 
     public void TargetLevelSetup()
     {
-        if (!levelEnded && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
+        if (levelState == LevelState.Running && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
         {
             //Debug.Log("target : " + CSV.targetDataArray[targetIncrement].spawnTime + " | " + CSV.targetDataArray[targetIncrement].duration + " | " + CSV.targetDataArray[targetIncrement].startPosition);
             CreateTarget(CSV.targetDataArray[targetIncrement]);
             targetIncrement++;
-            if ((targetIncrement) == CSV.targetDataArray.Length) levelEnded = true;
+            if ((targetIncrement) == CSV.targetDataArray.Length)
+            {
+                levelState = LevelState.Ending;
+            }
         }
     }
 
     public void DebugMenu()
     {
 
+    }
+
+    public void EndLevel()
+    {
+        UI.endMenu.gameObject.SetActive(true);
+        UI.endMenu.transform.DOScale(1, 0.5f);
+        UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
+        UI.endMenu.UpdateEndScore(Player.currentScore);
     }
 }

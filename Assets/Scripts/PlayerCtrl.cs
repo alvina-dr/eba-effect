@@ -16,6 +16,7 @@ public class PlayerCtrl : MonoBehaviour
     private LineRenderer rendoLeft;
     public int currentScore = 0;
     public int currentCombo = 0;
+    public int numTargetDestroyed = 0;
     public AudioClip shootSound;
 
     private void Start()
