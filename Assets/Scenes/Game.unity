@@ -3401,6 +3401,7 @@ MonoBehaviour:
   targetIncrement: 0
   _chrono: 0
   levelEnded: 0
+  computerMode: 1
 --- !u!4 &351964225
 Transform:
   m_ObjectHideFlags: 0
