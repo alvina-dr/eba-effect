@@ -4329,7 +4329,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   UI: {fileID: 0}
   Projectile: {fileID: 0}
-  targetPrefab: {fileID: 2050174552324595675, guid: 717292cad22b56b48bdc21b7ea6bbfcd,
+  targetPrefab: {fileID: 5071213427334439414, guid: 1d9ce9bab80ac704ea7a952fbd358e4d,
     type: 3}
   targetFrequence: 1
   targetIncrement: 0
@@ -13405,7 +13405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540226669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 6.48, z: 7.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13421,11 +13421,11 @@ Light:
   m_GameObject: {fileID: 1540226669}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 4
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1000
-  m_Range: 10
+  m_Color: {r: 0.25618547, g: 0.4755708, b: 0.9528302, a: 1}
+  m_Intensity: 60
+  m_Range: 60
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -13463,9 +13463,9 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
+  m_AreaSize: {x: 30, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0

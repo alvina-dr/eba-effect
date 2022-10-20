@@ -15,8 +15,8 @@ public class LightCtrl : MonoBehaviour
 
     public IEnumerator LightPulse(Light _light)
     {
-        _light.range = 5;
+        _light.range = 15;
         yield return new WaitForSeconds(0.1f);
-        _light.range = 10;
+        _light.range = 20;
     }
 }
