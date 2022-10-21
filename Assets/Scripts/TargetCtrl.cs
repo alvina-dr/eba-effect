@@ -14,7 +14,7 @@ public class TargetCtrl : MonoBehaviour
     private void Start()
     {
         GP = GPCtrl.instance;
-        GetComponent<MeshRenderer>().material.DOColor(Color.red, targetData.duration).SetEase(Ease.Linear);
+        //GetComponent<MeshRenderer>().material.DOColor(Color.red, targetData.duration).SetEase(Ease.Linear);
         timingIndicator.transform.DOScale(0.0085f, targetData.duration).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.DOScale(0, 0.2f).OnComplete(() => {
