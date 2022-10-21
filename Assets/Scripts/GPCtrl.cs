@@ -79,7 +79,6 @@ public class GPCtrl : MonoBehaviour
         TargetCtrl _target = Instantiate(targetPrefab).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
-        _target.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
     public void TargetLevelSetup()
