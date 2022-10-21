@@ -47,12 +47,19 @@ public class PlayerCtrl : MonoBehaviour
     {
         AudioEngine.instance.PlaySound(shootSound, false);
         GP.Vibration.SendHaptics(GP.Vibration.rightController);
+        RaycastHit hit;
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
         _projectile.transform.position = rightController.transform.position;
         Vector3 _direction = rightController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
+        if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, Mathf.Infinity))
+        {
+            hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            _projectile.DeactivateProjectile();
+        }
+
     }
 
     public void OnShootLeft()
@@ -64,12 +71,19 @@ public class PlayerCtrl : MonoBehaviour
     {
         AudioEngine.instance.PlaySound(shootSound, false);
         GP.Vibration.SendHaptics(GP.Vibration.leftController);
+        RaycastHit hit;
+
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
         _projectile.transform.position = leftController.transform.position;
         Vector3 _direction = leftController.transform.forward;
-        _projectile.transform.forward = -_direction /*+ new Vector3(0f, 90f, 90f)*/;
+        _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
+        if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
+        {
+            hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            _projectile.DeactivateProjectile();
+        }
     }
 
     public void ShootComputer()
