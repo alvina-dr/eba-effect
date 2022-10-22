@@ -19,15 +19,15 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Start()
     {
-        GP = GPCtrl.instance;
-        if (GP.computerMode)
+        if (GPCtrl.instance != null) GP = GPCtrl.instance;
+        if (GPCtrl.instance != null && GP.computerMode)
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
     }
     void Update()
     {
-        if (GP.computerMode)
+        if (GPCtrl.instance != null && GP.computerMode)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
