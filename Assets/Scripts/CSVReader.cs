@@ -21,11 +21,14 @@ public class CSVReader : MonoBehaviour
 
     public void ReadCSV()
     {
-        string[] data = textAssetData.text.Split(new string[] { ";", "\n" }, System.StringSplitOptions.None);
-        data = data.Take(data.Length - 1).ToArray();
-        int tableSize = data.Length / 3;
+        List<string> data = textAssetData.text.Split(new string[] { ";", "\n" }, System.StringSplitOptions.None).ToList();
+        GPCtrl.instance.levelMusic = Resources.Load<AudioClip>("Musics/"+data[0]);
+        data.RemoveAt(data.Count - 1);
+        data.RemoveAt(0);
+        data.RemoveAt(0);
+        data.RemoveAt(0);
+        int tableSize = data.Count / 3;
         targetDataArray = new TargetData[tableSize];
-
         for (int i = 0; i < tableSize; i++)
         {
             targetDataArray[i] = ScriptableObject.CreateInstance<TargetData>();

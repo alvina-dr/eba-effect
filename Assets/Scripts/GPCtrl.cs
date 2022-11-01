@@ -25,6 +25,7 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] LevelState levelState;
     [Header("DEBUG TOOLS")]
     [SerializeField] public bool computerMode;
+    public AudioClip levelMusic;
 
 
     void Awake()
@@ -48,6 +49,7 @@ public class GPCtrl : MonoBehaviour
         UI = FindObjectOfType<UICtrl>();
         Projectile = FindObjectOfType<ProjectilePool>();
         levelState = LevelState.Running;
+        if (levelMusic != null) AudioEngine.instance.PlayMusic(levelMusic, false);
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
@@ -106,6 +108,5 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.transform.DOScale(1, 0.5f);
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);
-
     }
 }
