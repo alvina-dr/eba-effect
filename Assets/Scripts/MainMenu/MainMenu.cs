@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public TextAsset[] levelAssetArray;
     public GameObject buttonLevelPrefab;
     public GameObject buttonLevelList;
+    public AudioClip menuMusic;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
             _button.GetComponentInChildren<TextMeshProUGUI>().text = levelAssetArray[i].name;
             _button.GetComponent<ButtonLevel>().levelAsset = levelAssetArray[i];
         }
+        AudioEngine.instance.PlayMusic(menuMusic, true);
     }
 
     void Update()

@@ -2390,6 +2390,7 @@ MonoBehaviour:
   buttonLevelPrefab: {fileID: 808249359052444950, guid: d069ddaf54ce1c84bb2797f201cde55a,
     type: 3}
   buttonLevelList: {fileID: 2093296903}
+  menuMusic: {fileID: 8300000, guid: 8119f67e2436dba44bfad905c61f4b23, type: 3}
 --- !u!1 &2139086594
 GameObject:
   m_ObjectHideFlags: 0
