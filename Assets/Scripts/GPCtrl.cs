@@ -7,6 +7,7 @@ public class GPCtrl : MonoBehaviour
 {
     public enum LevelState
     {
+        Before,
         Running,
         Ending,
         Over
@@ -22,7 +23,7 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] float targetFrequence;
     [SerializeField] int targetIncrement;
     [SerializeField] float _chrono;
-    [SerializeField] LevelState levelState;
+    [SerializeField] public LevelState levelState;
     [Header("DEBUG TOOLS")]
     [SerializeField] public bool computerMode;
     public AudioClip levelMusic;
@@ -48,14 +49,13 @@ public class GPCtrl : MonoBehaviour
         Player = FindObjectOfType<PlayerCtrl>();   
         UI = FindObjectOfType<UICtrl>();
         Projectile = FindObjectOfType<ProjectilePool>();
-        levelState = LevelState.Running;
-        if (levelMusic != null) AudioEngine.instance.PlayMusic(levelMusic, false);
+        levelState = LevelState.Before;
+        AudioEngine.instance.PlayMusic(null, false);
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
-        _chrono += Time.deltaTime;
         //if (currentTime >= targetFrequence)
         //{
         //    CreateTarget();
@@ -63,6 +63,17 @@ public class GPCtrl : MonoBehaviour
         //}
         //currentTime += Time.deltaTime;
 
+        if (levelState == LevelState.Before && FindObjectOfType<TargetCtrl>() == null)
+        {
+            LaunchLevel();
+            //launch chrono
+            levelState = LevelState.Running;
+            return;
+        } else if (levelState == LevelState.Before)
+        {
+            return;
+        }
+        _chrono += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //DEBUG MENU
@@ -108,5 +119,10 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.transform.DOScale(1, 0.5f);
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);
+    }
+
+    public void LaunchLevel()
+    {
+        if (levelMusic != null) AudioEngine.instance.PlayMusic(levelMusic, false);
     }
 }

@@ -56,7 +56,8 @@ public class PlayerCtrl : MonoBehaviour
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
         if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, Mathf.Infinity))
         {
-            hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
             _projectile.DeactivateProjectile();
         }
 
@@ -72,7 +73,6 @@ public class PlayerCtrl : MonoBehaviour
         AudioEngine.instance.PlaySound(shootSound, false);
         GP.Vibration.SendHaptics(GP.Vibration.leftController);
         RaycastHit hit;
-
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
         _projectile.transform.position = leftController.transform.position;
@@ -81,7 +81,8 @@ public class PlayerCtrl : MonoBehaviour
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
         if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
         {
-            hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
             _projectile.DeactivateProjectile();
         }
     }
@@ -89,6 +90,13 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootComputer()
     {
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        {
+            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            _projectile.DeactivateProjectile();
+        }
         _projectile.SetupProjectile();
         _projectile.transform.position = transform.position;
         _projectile.GetComponentInChildren<Rigidbody>().AddForce(Camera.main.transform.forward * throwPower + transform.up * throwUpwardPower, ForceMode.Impulse);

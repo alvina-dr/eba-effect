@@ -17,6 +17,7 @@ public class TargetCtrl : MonoBehaviour
         //GetComponent<MeshRenderer>().material.DOColor(Color.red, targetData.duration).SetEase(Ease.Linear);
         transform.LookAt(Camera.main.transform);
         transform.rotation *= Quaternion.Euler(0, 90, 0);
+        if (GP.levelState == GPCtrl.LevelState.Before) return;
         timingIndicator.transform.DOScale(0.0085f, targetData.duration).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.DOScale(0, 0.2f).OnComplete(() => {
@@ -52,6 +53,15 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentCombo++;
         GP.Player.numTargetDestroyed++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
+        transform.DOScale(0.35f, 0.1f).OnComplete(() => {
+            transform.DOScale(0f, 0.1f).OnComplete(() => {
+                Destroy(gameObject);
+            });
+        });
+    }
+
+    public void DestroyStartTarget()
+    {
         transform.DOScale(0.35f, 0.1f).OnComplete(() => {
             transform.DOScale(0f, 0.1f).OnComplete(() => {
                 Destroy(gameObject);
