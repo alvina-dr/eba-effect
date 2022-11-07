@@ -119,6 +119,7 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.transform.DOScale(1, 0.5f);
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);
+        UI.endMenu.UpdateMaxCombo(Player.maxCombo);
     }
 
     public void LaunchLevel()

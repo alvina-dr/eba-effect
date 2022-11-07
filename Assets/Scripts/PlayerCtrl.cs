@@ -14,6 +14,7 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] GameObject leftController;
     public int currentScore = 0;
     public int currentCombo = 0;
+    public int maxCombo = 0;
     public int numTargetDestroyed = 0;
     public AudioClip shootSound;
 

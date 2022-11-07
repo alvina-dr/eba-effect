@@ -24,6 +24,7 @@ public class TargetCtrl : MonoBehaviour
                 Destroy(gameObject);
                 GP.Player.currentCombo = 0;
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
+                if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
             });
         });
     }

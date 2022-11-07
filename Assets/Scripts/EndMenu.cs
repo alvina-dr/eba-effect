@@ -27,5 +27,6 @@ public class EndMenu : MonoBehaviour
     public void UpdateMaxCombo(int _maxCombo)
     {
         maxCombo = _maxCombo;
+        maxComboText.text = "Max combo : " +  maxCombo.ToString();
     }
 }
