@@ -1,71 +1,18 @@
 fileFormatVersion: 2
-guid: 1f270f7a748be2e4cbcd6a34e1e1fb41
+guid: e20772b96af5d5d44aa605b684d7c30e
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
-  - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Armature
-    second: {fileID: 2100000, guid: c5081560e4048c343b3c79332289a8fb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Beams
-    second: {fileID: 2100000, guid: 3dc050c8bd5fc0146bdc9075463fbb26, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fabric
-    second: {fileID: 2100000, guid: 2d438c90a1aea0545b9f9da00021e89e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Frame
-    second: {fileID: 2100000, guid: 0af0d53e52b114b4ea71b3cf89077106, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Gears
-    second: {fileID: 2100000, guid: 2fb2b84d1d80aff448586398631370d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hinge
-    second: {fileID: 2100000, guid: b6bca7160f5f9b645ad5acaf6e8903fd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Insets
-    second: {fileID: 2100000, guid: 106b8192cd8830140a80bc06cb937a58, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Key
-    second: {fileID: 2100000, guid: 33512a361acb4204c8794613d248706c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pole
-    second: {fileID: 2100000, guid: d27bb58d7cf37a64c948f153f64271f5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Screw
-    second: {fileID: 2100000, guid: 07d234597172a11458ea3cf9d17734c6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Target
-    second: {fileID: 2100000, guid: 0cb74bfbdd832034a844fad421b9c33b, type: 2}
+      name: No Name
+    second: {fileID: 2100000, guid: 6f8a4b96f29311a45b3f04104d8cd5b8, type: 2}
   materials:
-    materialImportMode: 2
-    materialName: 0
-    materialSearch: 1
+    materialImportMode: 1
+    materialName: 2
+    materialSearch: 0
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
