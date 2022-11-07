@@ -53,6 +53,7 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentCombo++;
         GP.Player.numTargetDestroyed++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
+        GetComponent<BoxCollider>().enabled = false;
         transform.DOScale(0.35f, 0.1f).OnComplete(() => {
             transform.DOScale(0f, 0.1f).OnComplete(() => {
                 Destroy(gameObject);
