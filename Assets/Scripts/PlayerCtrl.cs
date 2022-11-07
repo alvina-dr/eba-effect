@@ -77,7 +77,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
 
     }
@@ -107,7 +107,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
     }
 
@@ -119,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
         _projectile.SetupProjectile();
         _projectile.transform.position = transform.position;
