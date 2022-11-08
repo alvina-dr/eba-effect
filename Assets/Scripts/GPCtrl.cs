@@ -23,11 +23,18 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] int targetIncrement;
     [SerializeField] float _chrono;
     [SerializeField] public LevelState levelState;
-    [Header("DEBUG TOOLS")]
-    [SerializeField] public bool computerMode;
     public AudioClip levelMusic;
     public TargetIndicator targetIndicator;
-    [SerializeField] GameObject targetPool;
+    [SerializeField] public GameObject targetPool;
+
+    [Header("DEBUG TOOLS")]
+    [SerializeField] public bool computerMode;
+    [SerializeField] public bool cheatMode;
+    [SerializeField] public bool automaticTimingMode;
+
+    [Header("Automatic timing mode")]
+    [SerializeField] float energy;
+    [SerializeField] float threshold;
 
 
     void Awake()
@@ -52,23 +59,15 @@ public class GPCtrl : MonoBehaviour
         targetIndicator = FindObjectOfType<TargetIndicator>();
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
-        targetIndicator.transform.parent.transform.position = FindObjectOfType<TargetCtrl>().transform.position + new Vector3(0, 0.38f, -0.2f);
+        //targetIndicator.MoveToFirstTarget();
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
-        //if (currentTime >= targetFrequence)
-        //{
-        //    CreateTarget();
-        //    currentTime = 0;
-        //}
-        //currentTime += Time.deltaTime;
-
         if (levelState == LevelState.Before && FindObjectOfType<TargetCtrl>() == null)
         {
             LaunchLevel();
-            //launch chrono
             levelState = LevelState.Running;
             return;
         } else if (levelState == LevelState.Before)
@@ -76,10 +75,6 @@ public class GPCtrl : MonoBehaviour
             return;
         }
         _chrono += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //DEBUG MENU
-        }
         TargetLevelSetup();
         if (levelState == LevelState.Ending && FindObjectOfType<TargetCtrl>() == null) //change later when target pool is done | bad
         {
@@ -94,13 +89,20 @@ public class GPCtrl : MonoBehaviour
         TargetCtrl _target = Instantiate(targetPrefab, targetPool.transform).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
+        targetIndicator.MoveToFirstTarget();
     }
 
     public void TargetLevelSetup()
     {
+        //if (levelState == LevelState.Running && automaticTimingMode) //here we are in automatic mode that makes target spawn if energy is higher than threshold
+        //{
+        //    CreateTarget(CSV.targetDataArray[targetIncrement]);
+        //    if (AudioEngine.instance.)
+        //    return;
+        //}
+
         if (levelState == LevelState.Running && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
         {
-            //Debug.Log("target : " + CSV.targetDataArray[targetIncrement].spawnTime + " | " + CSV.targetDataArray[targetIncrement].duration + " | " + CSV.targetDataArray[targetIncrement].startPosition);
             CreateTarget(CSV.targetDataArray[targetIncrement]);
             targetIncrement++;
             if ((targetIncrement) == CSV.targetDataArray.Length)
@@ -108,11 +110,6 @@ public class GPCtrl : MonoBehaviour
                 levelState = LevelState.Ending;
             }
         }
-    }
-
-    public void DebugMenu()
-    {
-
     }
 
     public void EndLevel()
@@ -126,7 +123,8 @@ public class GPCtrl : MonoBehaviour
 
     public void GameOver()
     {
-        levelState = LevelState.Ending;
+        if (cheatMode) return;
+        levelState = LevelState.Ending; //will need to destroy all targets when game over
         //for (int i = 0; i < FindObjectsOfType<TargetCtrl>().Length; i++)
         //{
         //    Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);

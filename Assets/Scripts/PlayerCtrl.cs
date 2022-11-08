@@ -21,6 +21,7 @@ public class PlayerCtrl : MonoBehaviour
     public int maxCombo = 0;
     public int numTargetDestroyed = 0;
     public int health = 50;
+    public int scoreMultiplier = 1;
     public AudioClip shootSound;
 
     [Header("Laser color")]

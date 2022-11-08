@@ -8,9 +8,11 @@ public class TargetIndicator : MonoBehaviour
 {
     bool animationCanLoop = true;
     Image image;
+    GPCtrl GP;
 
     void Start()
     {
+        GP = GPCtrl.instance;
         image = GetComponent<Image>();
     }
 
@@ -25,6 +27,20 @@ public class TargetIndicator : MonoBehaviour
                     animationCanLoop = true;
                 });
             });
+        }
+    }
+
+    public void MoveToFirstTarget()
+    {
+        if (GP.targetPool.transform.childCount == 0)
+        {
+            Debug.Log("no children so no indicator");
+            image.enabled = false;
+        }
+        else
+        {
+            image.enabled = true;
+            transform.parent.transform.position = GP.targetPool.transform.GetChild(0).position + new Vector3(0, 0.38f, -0.2f); ;
         }
     }
 }

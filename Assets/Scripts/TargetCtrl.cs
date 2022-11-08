@@ -21,9 +21,11 @@ public class TargetCtrl : MonoBehaviour
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
+            GP.targetIndicator.MoveToFirstTarget();
             transform.DOScale(0, 0.2f).OnComplete(() => {
                 Destroy(gameObject);
                 GP.Player.currentCombo = 0;
+                GP.Player.scoreMultiplier = 1;
                 GP.Player.health -= 10;
                 GP.UI.UpdateLifeBar(GP.Player.health);
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
@@ -43,6 +45,7 @@ public class TargetCtrl : MonoBehaviour
         GP.UI.UpdateCombo(GP.Player.currentCombo);
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
+        GP.targetIndicator.MoveToFirstTarget();
         transform.DOScale(0.35f, 0.1f).OnComplete(() => {
             transform.DOScale(0f, 0.1f).OnComplete(() => {
                 Destroy(gameObject);
