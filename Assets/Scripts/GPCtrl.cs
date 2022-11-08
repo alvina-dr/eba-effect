@@ -15,7 +15,6 @@ public class GPCtrl : MonoBehaviour
 
     public static GPCtrl instance = null;
     public CSVReader CSV;
-    public VibrationCtrl Vibration;
     public PlayerCtrl Player;
     public UICtrl UI;
     public ProjectilePool Projectile;
@@ -27,6 +26,7 @@ public class GPCtrl : MonoBehaviour
     [Header("DEBUG TOOLS")]
     [SerializeField] public bool computerMode;
     public AudioClip levelMusic;
+    public TargetIndicator targetIndicator;
 
 
     void Awake()
@@ -45,12 +45,13 @@ public class GPCtrl : MonoBehaviour
     public void Start()
     {
         CSV = GetComponent<CSVReader>();   
-        Vibration = GetComponent<VibrationCtrl>();   
-        Player = FindObjectOfType<PlayerCtrl>();   
+        Player = FindObjectOfType<PlayerCtrl>();
         UI = FindObjectOfType<UICtrl>();
         Projectile = FindObjectOfType<ProjectilePool>();
+        targetIndicator = FindObjectOfType<TargetIndicator>();
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
+        targetIndicator.transform.parent.transform.position = FindObjectOfType<TargetCtrl>().transform.position + new Vector3(0, 0.38f, -0.2f);
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
@@ -120,6 +121,17 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);
         UI.endMenu.UpdateMaxCombo(Player.maxCombo);
+    }
+
+    public void GameOver()
+    {
+        levelState = LevelState.Ending;
+        for (int i = 0; i < FindObjectsOfType<TargetCtrl>().Length; i++)
+        {
+            Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
+            i--;
+        }
+        EndLevel();
     }
 
     public void LaunchLevel()

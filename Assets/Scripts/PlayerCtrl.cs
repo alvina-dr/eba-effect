@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+using DG.Tweening;
 
 public class PlayerCtrl : MonoBehaviour
 {
     GPCtrl GP;
+    VibrationCtrl Vibration;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float throwPower;/*{ get; set; }*/
     [SerializeField] float throwUpwardPower;
@@ -16,7 +20,12 @@ public class PlayerCtrl : MonoBehaviour
     public int currentCombo = 0;
     public int maxCombo = 0;
     public int numTargetDestroyed = 0;
+    public int health = 50;
     public AudioClip shootSound;
+
+    [Header("Laser color")]
+    [SerializeField] Gradient normalGradient;
+    [SerializeField] Gradient hitGradient;
 
     private void Start()
     {
@@ -25,6 +34,10 @@ public class PlayerCtrl : MonoBehaviour
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
+        GP.UI.UpdateLifeBar(health);
+        rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+        leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+        Vibration = GetComponent<VibrationCtrl>();
     }
     void Update()
     {
@@ -47,7 +60,7 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootRight()
     {
         AudioEngine.instance.PlaySound(shootSound, false);
-        GP.Vibration.SendHaptics(GP.Vibration.rightController);
+        Vibration.SendHaptics(Vibration.rightController);
         RaycastHit hit;
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
@@ -55,11 +68,16 @@ public class PlayerCtrl : MonoBehaviour
         Vector3 _direction = rightController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
+        rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = hitGradient;
+        rightController.transform.DOScale(1, 0.1f).OnComplete(() =>
+        {
+            rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+        });
         if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, Mathf.Infinity))
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
 
     }
@@ -72,7 +90,7 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootLeft()
     {
         AudioEngine.instance.PlaySound(shootSound, false);
-        GP.Vibration.SendHaptics(GP.Vibration.leftController);
+        Vibration.SendHaptics(Vibration.leftController);
         RaycastHit hit;
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         _projectile.SetupProjectile();
@@ -80,11 +98,16 @@ public class PlayerCtrl : MonoBehaviour
         Vector3 _direction = leftController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
+        leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = hitGradient;
+        leftController.transform.DOScale(1, 0.1f).OnComplete(() =>
+        {
+            leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+        });
         if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
     }
 
@@ -96,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
-            _projectile.DeactivateProjectile();
+            //_projectile.DeactivateProjectile();
         }
         _projectile.SetupProjectile();
         _projectile.transform.position = transform.position;
