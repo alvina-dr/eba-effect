@@ -27,6 +27,7 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] public bool computerMode;
     public AudioClip levelMusic;
     public TargetIndicator targetIndicator;
+    [SerializeField] GameObject targetPool;
 
 
     void Awake()
@@ -90,7 +91,7 @@ public class GPCtrl : MonoBehaviour
 
     public void CreateTarget(TargetData _targetData)
     {
-        TargetCtrl _target = Instantiate(targetPrefab).GetComponent<TargetCtrl>();
+        TargetCtrl _target = Instantiate(targetPrefab, targetPool.transform).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
     }
@@ -126,11 +127,11 @@ public class GPCtrl : MonoBehaviour
     public void GameOver()
     {
         levelState = LevelState.Ending;
-        for (int i = 0; i < FindObjectsOfType<TargetCtrl>().Length; i++)
-        {
-            Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
-            i--;
-        }
+        //for (int i = 0; i < FindObjectsOfType<TargetCtrl>().Length; i++)
+        //{
+        //    Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
+        //    i--;
+        //}
         EndLevel();
     }
 
