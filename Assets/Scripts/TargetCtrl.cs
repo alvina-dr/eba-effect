@@ -52,14 +52,14 @@ public class TargetCtrl : MonoBehaviour
 
     public void DestroyTargetOnHit()
     {
-        int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
-        GP.Player.currentScore += Mathf.RoundToInt(120 * percentage / 100);
-        GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.currentCombo++;
-        GP.Player.health += 5;
+        GP.UI.UpdateCombo(GP.Player.currentCombo);
+        int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
+        GP.Player.currentScore += GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(120 * percentage / 100), GP.Player.currentCombo);
+        GP.UI.UpdateScore(GP.Player.currentScore);
+        GP.Player.health += 5; //hard value need to be variable to tweak later
         GP.UI.UpdateLifeBar(GP.Player.health);
         GP.Player.numTargetDestroyed++;
-        GP.UI.UpdateCombo(GP.Player.currentCombo);
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
         GP.targetIndicator.MoveToFirstTarget();

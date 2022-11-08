@@ -18,6 +18,7 @@ public class GPCtrl : MonoBehaviour
     public PlayerCtrl Player;
     public UICtrl UI;
     public ProjectilePool Projectile;
+    public ComboCtrl Combo;
     [SerializeField] GameObject targetPrefab;
     [SerializeField] float targetFrequence;
     [SerializeField] int targetIncrement;
@@ -56,6 +57,7 @@ public class GPCtrl : MonoBehaviour
         Player = FindObjectOfType<PlayerCtrl>();
         UI = FindObjectOfType<UICtrl>();
         Projectile = FindObjectOfType<ProjectilePool>();
+        Combo = GetComponent<ComboCtrl>();
         targetIndicator = FindObjectOfType<TargetIndicator>();
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);

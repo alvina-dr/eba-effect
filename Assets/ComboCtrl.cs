@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ComboCtrl : MonoBehaviour
 {
-    public class ComboEntry
+    [Header("x = threshold, y = multiplier, z = health gain")]
+    [SerializeField] public List<Vector3Int> comboTable;
+
+
+    
+
+    public int ApplyMultiplierToScore(int _score, int _combo)
     {
-
-        public int comboNum;
-        public int multiplier;
-
-        public ComboEntry(int _comboNum, int _multiplier)
+        for (int i = 0; i < comboTable.Count; i++)
         {
-            comboNum = _comboNum;
-            multiplier = _multiplier;
+            if (_combo < comboTable[i].x) return _score * comboTable[i].y;
         }
+        return _score * comboTable[comboTable.Count - 1].y;
     }
-
-    [SerializeField] public List<ComboEntry> comboTable = new List<ComboEntry>();
 }
