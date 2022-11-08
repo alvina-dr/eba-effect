@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22b7bc6910342454fabae3d0a3177e73
+guid: f5c381d2db62c874b8522a998cd1d319
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -46,7 +46,7 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 100
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -90,8 +90,8 @@ ModelImporter:
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
-    skinWeightsMode: 1
-    maxBonesPerVertex: 6
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
     meshOptimizationFlags: -1
@@ -126,7 +126,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Rotor
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1

@@ -35,7 +35,8 @@ public class PlayerCtrl : MonoBehaviour
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
-        GP.UI.UpdateLifeBar(health);
+
+        if (GP != null) GP.UI.UpdateLifeBar(health);
         rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
         leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
         Vibration = GetComponent<VibrationCtrl>();

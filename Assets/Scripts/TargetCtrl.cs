@@ -10,6 +10,7 @@ public class TargetCtrl : MonoBehaviour
     float chrono;
     private GPCtrl GP;
     [SerializeField] private Image timingIndicator;
+    bool animationCanLoop = true;
 
     private void Start()
     {
@@ -31,6 +32,22 @@ public class TargetCtrl : MonoBehaviour
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
             });
         });
+    }
+
+    void Update()
+    {
+        if (animationCanLoop)
+        {
+            animationCanLoop = false;
+            transform.DOMoveY(transform.position.y + 0.05f, 1f).OnComplete(() =>
+            {
+                transform.DOMoveY(transform.position.y - 0.05f, 1f).OnComplete(() => {
+                    animationCanLoop = true;
+                });
+            });
+        }
+        chrono += Time.deltaTime;
+
     }
 
     public void DestroyTargetOnHit()
@@ -60,11 +77,5 @@ public class TargetCtrl : MonoBehaviour
                 Destroy(gameObject);
             });
         });
-    }
-
-    public void Update()
-    {
-        chrono += Time.deltaTime;
-
     }
 }
