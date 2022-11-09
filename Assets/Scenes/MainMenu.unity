@@ -2232,6 +2232,7 @@ MonoBehaviour:
   maxCombo: 0
   numTargetDestroyed: 0
   health: 50
+  scoreMultiplier: 1
   shootSound: {fileID: 8300000, guid: 0038324574910494c846703c7d934ed7, type: 3}
   normalGradient:
     serializedVersion: 2

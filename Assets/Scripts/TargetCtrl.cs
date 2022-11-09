@@ -10,6 +10,7 @@ public class TargetCtrl : MonoBehaviour
     float chrono;
     private GPCtrl GP;
     [SerializeField] private Image timingIndicator;
+    bool animationCanLoop = true;
 
     private void Start()
     {
@@ -21,9 +22,11 @@ public class TargetCtrl : MonoBehaviour
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
+            GP.targetIndicator.MoveToFirstTarget();
             transform.DOScale(0, 0.2f).OnComplete(() => {
                 Destroy(gameObject);
                 GP.Player.currentCombo = 0;
+                GP.Player.scoreMultiplier = 1;
                 GP.Player.health -= 10;
                 GP.UI.UpdateLifeBar(GP.Player.health);
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
@@ -31,18 +34,35 @@ public class TargetCtrl : MonoBehaviour
         });
     }
 
+    void Update()
+    {
+        if (animationCanLoop)
+        {
+            animationCanLoop = false;
+            transform.DOMoveY(transform.position.y + 0.05f, 1f).OnComplete(() =>
+            {
+                transform.DOMoveY(transform.position.y - 0.05f, 1f).OnComplete(() => {
+                    animationCanLoop = true;
+                });
+            });
+        }
+        chrono += Time.deltaTime;
+
+    }
+
     public void DestroyTargetOnHit()
     {
-        int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
-        GP.Player.currentScore += Mathf.RoundToInt(120 * percentage / 100);
-        GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.currentCombo++;
-        GP.Player.health += 5;
+        GP.UI.UpdateCombo(GP.Player.currentCombo);
+        int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
+        GP.Player.currentScore += GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(120 * percentage / 100), GP.Player.currentCombo);
+        GP.UI.UpdateScore(GP.Player.currentScore);
+        GP.Player.health += 5; //hard value need to be variable to tweak later
         GP.UI.UpdateLifeBar(GP.Player.health);
         GP.Player.numTargetDestroyed++;
-        GP.UI.UpdateCombo(GP.Player.currentCombo);
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
+        GP.targetIndicator.MoveToFirstTarget();
         transform.DOScale(0.35f, 0.1f).OnComplete(() => {
             transform.DOScale(0f, 0.1f).OnComplete(() => {
                 Destroy(gameObject);
@@ -57,11 +77,5 @@ public class TargetCtrl : MonoBehaviour
                 Destroy(gameObject);
             });
         });
-    }
-
-    public void Update()
-    {
-        chrono += Time.deltaTime;
-
     }
 }

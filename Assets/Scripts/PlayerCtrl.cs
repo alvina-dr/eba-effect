@@ -21,6 +21,7 @@ public class PlayerCtrl : MonoBehaviour
     public int maxCombo = 0;
     public int numTargetDestroyed = 0;
     public int health = 50;
+    public int scoreMultiplier = 1;
     public AudioClip shootSound;
 
     [Header("Laser color")]
@@ -34,7 +35,8 @@ public class PlayerCtrl : MonoBehaviour
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
-        GP.UI.UpdateLifeBar(health);
+
+        if (GP != null) GP.UI.UpdateLifeBar(health);
         rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
         leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
         Vibration = GetComponent<VibrationCtrl>();
