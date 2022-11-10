@@ -10,12 +10,13 @@ public class PlayerCtrl : MonoBehaviour
 {
     GPCtrl GP;
     VibrationCtrl Vibration;
-    [SerializeField] GameObject projectilePrefab;
     [SerializeField] float throwPower;/*{ get; set; }*/
     [SerializeField] float throwUpwardPower;
     public Vector3 throwDirection;
     [SerializeField] GameObject rightController;
-    [SerializeField] GameObject leftController;
+    [SerializeField] GameObject leftController;    
+    [SerializeField] Animation rightControllerAnimation;
+    [SerializeField] Animation leftControllerAnimation;
     public int currentScore = 0;
     public int currentCombo = 0;
     public int maxCombo = 0;
@@ -23,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     public int health = 50;
     public int scoreMultiplier = 1;
     public AudioClip shootSound;
+    [SerializeField] GameObject projectilePrefab;
 
     [Header("Laser color")]
     [SerializeField] Gradient normalGradient;
@@ -35,7 +37,6 @@ public class PlayerCtrl : MonoBehaviour
         {
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
-
         if (GP != null) GP.UI.UpdateLifeBar(health);
         rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
         leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
@@ -63,8 +64,11 @@ public class PlayerCtrl : MonoBehaviour
     {
         AudioEngine.instance.PlaySound(shootSound, false);
         Vibration.SendHaptics(Vibration.rightController);
+        rightControllerAnimation.Play(rightControllerAnimation.clip.name);
         RaycastHit hit;
-        ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
+        ProjectileCtrl _projectile;
+        if (GP != null) _projectile = GP.Projectile.GetProjectile();
+        else _projectile =  Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
         _projectile.SetupProjectile();
         _projectile.transform.position = rightController.transform.position;
         Vector3 _direction = rightController.transform.forward;
@@ -93,9 +97,11 @@ public class PlayerCtrl : MonoBehaviour
     {
         AudioEngine.instance.PlaySound(shootSound, false);
         Vibration.SendHaptics(Vibration.leftController);
+        leftControllerAnimation.Play(leftControllerAnimation.clip.name);
         RaycastHit hit;
-        ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
-        _projectile.SetupProjectile();
+        ProjectileCtrl _projectile;
+        if (GP != null) _projectile = GP.Projectile.GetProjectile();
+        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>(); _projectile.SetupProjectile();
         _projectile.transform.position = leftController.transform.position;
         Vector3 _direction = leftController.transform.forward;
         _projectile.transform.forward = -_direction;

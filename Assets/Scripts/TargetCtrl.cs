@@ -64,7 +64,7 @@ public class TargetCtrl : MonoBehaviour
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
         GP.targetIndicator.MoveToFirstTarget();
-        targetHinge.transform.DOMove(transform.position + new Vector3(0, 90, 0), .1f).OnComplete(() => {
+        targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
                     Destroy(gameObject);
@@ -76,8 +76,7 @@ public class TargetCtrl : MonoBehaviour
     public void DestroyStartTarget()
     {
 
-        targetHinge.transform.DOMove(targetHinge.transform.position + new Vector3(0, 90, 0), .1f).OnComplete(() => {
-            Debug.Log("has passed");
+        targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
                     Destroy(gameObject);
