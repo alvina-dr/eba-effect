@@ -60,7 +60,7 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
         int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
-        GP.Player.currentScore += GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(120 * percentage / 100), GP.Player.currentCombo);
+        GP.Player.currentScore += GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
         GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.health += 5; //hard value need to be variable to tweak later
         GP.UI.UpdateLifeBar(GP.Player.health);

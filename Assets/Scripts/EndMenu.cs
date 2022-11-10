@@ -15,7 +15,7 @@ public class EndMenu : MonoBehaviour
     public void UpdateEndScore(int _endScore)
     {
         endScore = _endScore;
-        endScoreText.text = endScore.ToString();
+        endScoreText.text = "Score : " + endScore.ToString();
     }
 
     public void UpdateTotalDestroyed(int _totalDestroyed)

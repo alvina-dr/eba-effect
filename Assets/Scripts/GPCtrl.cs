@@ -117,6 +117,7 @@ public class GPCtrl : MonoBehaviour
     public void EndLevel()
     {
         UI.endMenu.gameObject.SetActive(true);
+        UI.inGameMenu.gameObject.SetActive(false);
         UI.endMenu.transform.DOScale(1, 0.5f);
         UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
         UI.endMenu.UpdateEndScore(Player.currentScore);

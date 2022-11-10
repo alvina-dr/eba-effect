@@ -11,6 +11,7 @@ public class UICtrl : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI comboText;
     [SerializeField] public EndMenu endMenu;
+    [SerializeField] public GameObject inGameMenu;
     [SerializeField] Slider healthBar;
 
     private void Start()
