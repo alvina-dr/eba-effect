@@ -5,8 +5,8 @@ using UnityEngine;
 public class DataHolder : MonoBehaviour
 {
     public static DataHolder instance = null;
-
     public TextAsset levelToLoad;
+    public GameSettings GameSettings;
 
     void Awake()
     {
@@ -19,5 +19,6 @@ public class DataHolder : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        GameSettings = Resources.Load<GameSettings>("GameSettings");
     }
 }

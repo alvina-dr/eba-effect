@@ -35,12 +35,14 @@ public class AudioEngine : MonoBehaviour
     {
         musicStream.clip = soundClipToPlay;
         musicStream.Play();
+        musicStream.loop = loop;
     }
 
     public void PlaySound(AudioClip soundClipToPlay, bool loop)
     {
         soundStream.clip = soundClipToPlay;
         soundStream.Play();
+        soundStream.loop = loop;
     }
 
     private void Start()
