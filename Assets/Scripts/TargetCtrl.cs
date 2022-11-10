@@ -11,6 +11,7 @@ public class TargetCtrl : MonoBehaviour
     private GPCtrl GP;
     [SerializeField] private Image timingIndicator;
     bool animationCanLoop = true;
+    [SerializeField] GameObject targetHinge;
 
     private void Start()
     {
@@ -63,18 +64,24 @@ public class TargetCtrl : MonoBehaviour
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
         GP.targetIndicator.MoveToFirstTarget();
-        transform.DOScale(0.35f, 0.1f).OnComplete(() => {
-            transform.DOScale(0f, 0.1f).OnComplete(() => {
-                Destroy(gameObject);
+        targetHinge.transform.DOMove(transform.position + new Vector3(0, 90, 0), .1f).OnComplete(() => {
+            transform.DOScale(0.35f, 0.1f).OnComplete(() => {
+                transform.DOScale(0f, 0.1f).OnComplete(() => {
+                    Destroy(gameObject);
+                });
             });
         });
     }
 
     public void DestroyStartTarget()
     {
-        transform.DOScale(0.35f, 0.1f).OnComplete(() => {
-            transform.DOScale(0f, 0.1f).OnComplete(() => {
-                Destroy(gameObject);
+
+        targetHinge.transform.DOMove(targetHinge.transform.position + new Vector3(0, 90, 0), .1f).OnComplete(() => {
+            Debug.Log("has passed");
+            transform.DOScale(0.35f, 0.1f).OnComplete(() => {
+                transform.DOScale(0f, 0.1f).OnComplete(() => {
+                    Destroy(gameObject);
+                });
             });
         });
     }
