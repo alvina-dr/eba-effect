@@ -11,7 +11,7 @@ public class ExitGame : MonoBehaviour
         myButton = GetComponent<Button>();
         myButton.onClick.AddListener(ExitFunction);
     }
-    void ExitFunction()
+    public void ExitFunction()
     {
         Debug.Log("exit the game");
         Application.Quit();

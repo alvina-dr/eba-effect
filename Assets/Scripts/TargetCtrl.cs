@@ -18,11 +18,11 @@ public class TargetCtrl : MonoBehaviour
     {
         GP = GPCtrl.instance;
         //GetComponent<MeshRenderer>().material.DOColor(Color.red, targetData.duration).SetEase(Ease.Linear);
-        transform.LookAt(Camera.main.transform);
         transform.rotation *= Quaternion.Euler(0, 90, 0);
         particles = GetComponentInChildren<ParticleSystem>();
         particles.gameObject.SetActive(false);
         if (GP == null) return;
+        transform.LookAt(Camera.main.transform);
         if (GP.levelState == GPCtrl.LevelState.Before) return;
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
