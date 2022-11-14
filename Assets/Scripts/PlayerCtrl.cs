@@ -70,7 +70,7 @@ public class PlayerCtrl : MonoBehaviour
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
         else _projectile =  Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
         _projectile.SetupProjectile();
-        _projectile.transform.position = rightController.transform.position;
+        _projectile.transform.position = rightController.transform.position + rightController.transform.forward.normalized/4*3;
         Vector3 _direction = rightController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
@@ -102,7 +102,7 @@ public class PlayerCtrl : MonoBehaviour
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
         else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>(); _projectile.SetupProjectile();
-        _projectile.transform.position = leftController.transform.position;
+        _projectile.transform.position = leftController.transform.position + leftController.transform.forward.normalized/4*3;
         Vector3 _direction = leftController.transform.forward;
         _projectile.transform.forward = -_direction;
         _projectile.GetComponent<Rigidbody>().AddForce(_direction * throwPower, ForceMode.Impulse);
