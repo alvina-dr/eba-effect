@@ -133,6 +133,9 @@ public class GPCtrl : MonoBehaviour
         //    Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
         //    i--;
         //}
+        AudioEngine.instance.musicStream.DOPitch(0, .5f).OnComplete(() => {
+            AudioEngine.instance.musicStream.Stop();
+        });
         EndLevel();
     }
 

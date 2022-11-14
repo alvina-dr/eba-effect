@@ -27,7 +27,8 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
 
     [Header("Laser color")]
-    [SerializeField] Gradient normalGradient;
+    [SerializeField] Gradient normalLeftGradient;
+    [SerializeField] Gradient normalRightGradient;
     [SerializeField] Gradient hitGradient;
 
     private void Start()
@@ -38,8 +39,8 @@ public class PlayerCtrl : MonoBehaviour
             Camera.main.transform.position -= new Vector3(0f, 1, 0f);
         }
         if (GP != null) GP.UI.UpdateLifeBar(health);
-        rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
-        leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+        rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalRightGradient;
+        leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalLeftGradient;
         Vibration = GetComponent<VibrationCtrl>();
     }
     void Update()
@@ -77,7 +78,7 @@ public class PlayerCtrl : MonoBehaviour
         rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = hitGradient;
         rightController.transform.DOScale(1, 0.1f).OnComplete(() =>
         {
-            rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+            rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalRightGradient;
         });
         if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, Mathf.Infinity))
         {
@@ -109,7 +110,7 @@ public class PlayerCtrl : MonoBehaviour
         leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = hitGradient;
         leftController.transform.DOScale(1, 0.1f).OnComplete(() =>
         {
-            leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalGradient;
+            leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalLeftGradient;
         });
         if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
         {
