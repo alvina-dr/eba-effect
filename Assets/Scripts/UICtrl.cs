@@ -41,4 +41,9 @@ public class UICtrl : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene("Game");
+    }
 }
