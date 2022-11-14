@@ -135,6 +135,7 @@ public class GPCtrl : MonoBehaviour
         //}
         AudioEngine.instance.musicStream.DOPitch(0, .5f).OnComplete(() => {
             AudioEngine.instance.musicStream.Stop();
+            AudioEngine.instance.musicStream.pitch = 1;
         });
         EndLevel();
     }
