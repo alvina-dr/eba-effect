@@ -103,7 +103,7 @@ public class GPCtrl : MonoBehaviour
         //    return;
         //}
 
-        if (levelState == LevelState.Running && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration)
+        if (levelState == LevelState.Running && _chrono >= CSV.targetDataArray[targetIncrement].spawnTime - CSV.targetDataArray[targetIncrement].duration + .5f)
         {
             CreateTarget(CSV.targetDataArray[targetIncrement]);
             targetIncrement++;
