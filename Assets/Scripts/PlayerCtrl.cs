@@ -82,7 +82,8 @@ public class PlayerCtrl : MonoBehaviour
         });
         if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, Mathf.Infinity))
         {
-            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
+            else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
             //_projectile.DeactivateProjectile();
         }
@@ -114,7 +115,8 @@ public class PlayerCtrl : MonoBehaviour
         });
         if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
         {
-            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
+            else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
             //_projectile.DeactivateProjectile();
         }
@@ -126,7 +128,8 @@ public class PlayerCtrl : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
-            if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
+            else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
             //_projectile.DeactivateProjectile();
         }

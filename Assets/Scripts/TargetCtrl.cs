@@ -22,6 +22,7 @@ public class TargetCtrl : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, 90, 0);
         particles = GetComponentInChildren<ParticleSystem>();
         particles.gameObject.SetActive(false);
+        if (GP == null) return;
         if (GP.levelState == GPCtrl.LevelState.Before) return;
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
@@ -85,6 +86,19 @@ public class TargetCtrl : MonoBehaviour
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
+                    Destroy(gameObject);
+                });
+            });
+        });
+    }
+
+    public void DestroyButtonTarget()
+    {
+        particles.gameObject.SetActive(true);
+        targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, 90), .3f).OnComplete(() => {
+            transform.DOScale(0.35f, 0.1f).OnComplete(() => {
+                transform.DOScale(0f, 0.1f).OnComplete(() => {
+                    GetComponent<TargetButton>().OnShoot();
                     Destroy(gameObject);
                 });
             });
