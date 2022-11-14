@@ -26,6 +26,7 @@ public class TargetCtrl : MonoBehaviour
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
+            if (!GetComponent<BoxCollider>().enabled) return;
             GP.targetIndicator.MoveToFirstTarget();
             transform.DOScale(0, 0.2f).OnComplete(() => {
                 Destroy(gameObject);
