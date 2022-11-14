@@ -18,6 +18,8 @@ public class AudioEngine : MonoBehaviour
     float nextBeatTime;
     [SerializeField] float offset;
 
+    public AudioLowPassFilter lowPass;
+
     void Awake()
     {
         if (instance == null)
@@ -48,6 +50,7 @@ public class AudioEngine : MonoBehaviour
     private void Start()
     {
         secondPerBeat = 60f / bpm;
+        lowPass = GetComponent<AudioLowPassFilter>();
     }
 
 

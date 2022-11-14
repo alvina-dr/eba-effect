@@ -36,6 +36,10 @@ public class TargetCtrl : MonoBehaviour
                 GP.Player.health -= DataHolder.instance.GameSettings.targetDamage;
                 GP.UI.UpdateLifeBar(GP.Player.health);
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
+                DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .2f).OnComplete(() => {
+                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .1f); 
+                
+                });
             });
         });
 
