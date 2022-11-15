@@ -9,8 +9,13 @@ public class TargetData : ScriptableObject
         Fixed,
         Moving
     }
+    public enum TargetSide
+    {
+        left,
+        right
+    }
     public float spawnTime;
     public float duration;
     public Vector3 startPosition;
-
+    public TargetSide targetSide;
 }

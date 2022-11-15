@@ -25,6 +25,8 @@ public class GPCtrl : MonoBehaviour
     [SerializeField] float _chrono;
     [SerializeField] public LevelState levelState;
     public AudioClip levelMusic;
+    public float offset;
+    public float bpm;
     public TargetIndicator targetIndicator;
     [SerializeField] public GameObject targetPool;
 
@@ -36,6 +38,8 @@ public class GPCtrl : MonoBehaviour
     [Header("Automatic timing mode")]
     [SerializeField] float energy;
     [SerializeField] float threshold;
+    public AnimationCurve inLowPass;
+    public AnimationCurve outLowPass;
 
 
     void Awake()
@@ -61,6 +65,7 @@ public class GPCtrl : MonoBehaviour
         targetIndicator = FindObjectOfType<TargetIndicator>();
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
+        _chrono -= offset;
         //targetIndicator.MoveToFirstTarget();
     }
 
@@ -127,15 +132,22 @@ public class GPCtrl : MonoBehaviour
     public void GameOver()
     {
         if (cheatMode) return;
-        levelState = LevelState.Ending; //will need to destroy all targets when game over
+        levelState = LevelState.Over; //will need to destroy all targets when game over
         //for (int i = 0; i < FindObjectsOfType<TargetCtrl>().Length; i++)
         //{
         //    Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
         //    i--;
         //}
         AudioEngine.instance.musicStream.DOPitch(0, .5f).OnComplete(() => {
+            AudioEngine.instance.musicStream.volume = 0;
+
             AudioEngine.instance.musicStream.Stop();
-            AudioEngine.instance.musicStream.pitch = 1;
+            //DOTween.To(() => AudioEngine.instance.musicStream.volume, x => AudioEngine.instance.musicStream.volume = x, 0, .2f);
+
+            AudioEngine.instance.musicStream.DOPitch(1, .1f).OnComplete(() => {
+                AudioEngine.instance.musicStream.volume = 1;
+                AudioEngine.instance.lowPass.cutoffFrequency = 22000;
+            });
         });
         EndLevel();
     }

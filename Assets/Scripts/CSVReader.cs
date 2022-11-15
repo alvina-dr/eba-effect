@@ -22,20 +22,28 @@ public class CSVReader : MonoBehaviour
     public void ReadCSV()
     {
         List<string> data = textAssetData.text.Split(new string[] { ";", "\n" }, System.StringSplitOptions.None).ToList();
-        GPCtrl.instance.levelMusic = Resources.Load<AudioClip>("Musics/"+data[0]);
         data.RemoveAt(data.Count - 1);
+        
+        GPCtrl.instance.levelMusic = Resources.Load<AudioClip>("Musics/"+data[0]);
+        data.RemoveAt(0);
+        
+        if (data[0] != null) GPCtrl.instance.offset = float.Parse(data[0]);
+        data.RemoveAt(0);
+
+        if(data[0] != null) GPCtrl.instance.bpm = float.Parse(data[0]);
         data.RemoveAt(0);
         data.RemoveAt(0);
-        data.RemoveAt(0);
-        int tableSize = data.Count / 3;
+        
+        int tableSize = data.Count / 4;
         targetDataArray = new TargetData[tableSize];
         for (int i = 0; i < tableSize; i++)
         {
             targetDataArray[i] = ScriptableObject.CreateInstance<TargetData>();
-            targetDataArray[i].spawnTime = float.Parse(data[3 * (i)])/1000; //first column
-            targetDataArray[i].duration = float.Parse(data[3 * (i) + 1]); //second column
-            string[] _startPosition = data[3 * (i) + 2].Split(new string[] { "f", "\n" }, System.StringSplitOptions.None);
+            targetDataArray[i].spawnTime = float.Parse(data[4 * (i)])/1000; //first column
+            targetDataArray[i].duration = float.Parse(data[4 * (i) + 1]); //second column
+            string[] _startPosition = data[4 * (i) + 2].Split(new string[] { "f", "\n" }, System.StringSplitOptions.None);
             targetDataArray[i].startPosition = new Vector3(float.Parse(_startPosition[0]), float.Parse(_startPosition[1])+1, 0);  //third column
+            targetDataArray[i].targetSide = (TargetData.TargetSide)System.Enum.Parse(typeof(TargetData.TargetSide), data[4 * (i) + 3]); //first column
         }
     }
 }

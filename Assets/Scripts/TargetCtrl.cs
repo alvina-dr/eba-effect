@@ -14,6 +14,7 @@ public class TargetCtrl : MonoBehaviour
     [SerializeField] GameObject targetHinge;
     ParticleSystem particles;
 
+
     private void Start()
     {
         GP = GPCtrl.instance;
@@ -24,6 +25,7 @@ public class TargetCtrl : MonoBehaviour
         particles.gameObject.SetActive(false);
         if (GP == null) return;
         if (GP.levelState == GPCtrl.LevelState.Before) return;
+        if (targetData.targetSide == TargetData.TargetSide.left) transform.rotation *= Quaternion.Euler(0, 180, 0);
         timingIndicator.DOFillAmount(1, targetData.duration).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
@@ -36,8 +38,9 @@ public class TargetCtrl : MonoBehaviour
                 GP.Player.health -= DataHolder.instance.GameSettings.targetDamage;
                 GP.UI.UpdateLifeBar(GP.Player.health);
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
-                DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .2f).OnComplete(() => {
-                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .1f); 
+                DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .22f).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm
+                    if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
+                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .22f).SetEase(GP.outLowPass); 
                 
                 });
             });
