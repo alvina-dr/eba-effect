@@ -63,7 +63,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootRight()
     {
-        AudioEngine.instance.PlaySound(shootSound, false);
+        //AudioEngine.instance.PlaySound(shootSound, false);
+        rightController.transform.parent.GetComponentInChildren<AudioSource>().Play();
         Vibration.SendHaptics(Vibration.rightController);
         rightControllerAnimation.Play(rightControllerAnimation.clip.name);
         RaycastHit hit;
@@ -97,7 +98,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootLeft()
     {
-        AudioEngine.instance.PlaySound(shootSound, false);
+        //AudioEngine.instance.PlaySound(shootSound, false);
+        leftController.transform.parent.GetComponentInChildren<AudioSource>().Play();
         Vibration.SendHaptics(Vibration.leftController);
         leftControllerAnimation.Play(leftControllerAnimation.clip.name);
         RaycastHit hit;

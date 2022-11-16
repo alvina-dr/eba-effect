@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3228261433343331043}
   - component: {fileID: 3228261433343331042}
   - component: {fileID: 3228261433343330973}
+  - component: {fileID: 464904355351523596}
   m_Layer: 0
   m_Name: IslandLarge
   m_TagString: Untagged
@@ -1695,3 +1696,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3228261433343330975}
   m_Mesh: {fileID: 0}
+--- !u!114 &464904355351523596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228261433343330975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c84d12aa3524488d4691a15041de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveForward: 0
+  floatInAir: 1

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8549570988968997931}
   - component: {fileID: 8549570988968997932}
   - component: {fileID: 8549570988968997933}
+  - component: {fileID: 4454872256126229760}
   m_Layer: 0
   m_Name: IslandSmall
   m_TagString: Untagged
@@ -765,3 +766,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8549570988968997936}
   m_Mesh: {fileID: 0}
+--- !u!114 &4454872256126229760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549570988968997936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c84d12aa3524488d4691a15041de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveForward: 0
+  floatInAir: 1
