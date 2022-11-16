@@ -15,5 +15,8 @@ public class GameSettings : ScriptableObject
     public int maxPointPerTarget = 120;
 
     [Header("COMBOS | x = threshold, y = multiplier, z = health gain")]
-    [SerializeField] public List<Vector3Int> comboTable;
+    public List<Vector3Int> comboTable;
+
+    [Header("SOUND FX")]
+    public AudioClip winSound;
 }

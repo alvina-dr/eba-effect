@@ -33,14 +33,15 @@ public class TargetCtrl : MonoBehaviour
             if (!GetComponent<BoxCollider>().enabled) return;
             GP.targetIndicator.MoveToFirstTarget();
             transform.DOScale(0, 0.2f).OnComplete(() => {
-                Destroy(gameObject);
                 GP.Player.currentCombo = 0;
                 GP.Player.scoreMultiplier = 1;
                 GP.Player.health -= DataHolder.instance.GameSettings.targetDamage;
                 GP.UI.UpdateLifeBar(GP.Player.health);
                 GP.UI.UpdateCombo(GP.Player.currentCombo);
+                Destroy(gameObject);
+                if (GP.lowPassFilter) return;
                 DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .22f).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm
-                    if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
+                    //if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
                     DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .22f).SetEase(GP.outLowPass); 
                 
                 });

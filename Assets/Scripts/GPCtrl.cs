@@ -33,6 +33,7 @@ public class GPCtrl : MonoBehaviour
     [Header("DEBUG TOOLS")]
     [SerializeField] public bool computerMode;
     [SerializeField] public bool cheatMode;
+    [SerializeField] public bool lowPassFilter;
     [SerializeField] public bool automaticTimingMode;
 
     [Header("Automatic timing mode")]
@@ -66,7 +67,6 @@ public class GPCtrl : MonoBehaviour
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
         _chrono -= offset;
-        //targetIndicator.MoveToFirstTarget();
     }
 
     //ici variable du fichier csv, on importe depuis gp ctrl
@@ -86,7 +86,7 @@ public class GPCtrl : MonoBehaviour
         if (levelState == LevelState.Ending && FindObjectOfType<TargetCtrl>() == null) //change later when target pool is done | bad
         {
             levelState = LevelState.Over;
-            EndLevel();
+            WinGame();
         }
     }
 
@@ -119,14 +119,12 @@ public class GPCtrl : MonoBehaviour
         }
     }
 
-    public void EndLevel()
+    public void WinGame()
     {
-        UI.endMenu.gameObject.SetActive(true);
-        UI.inGameMenu.gameObject.SetActive(false);
-        UI.endMenu.transform.DOScale(1, 0.5f);
-        UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
-        UI.endMenu.UpdateEndScore(Player.currentScore);
-        UI.endMenu.UpdateMaxCombo(Player.maxCombo);
+        //make ui well done
+        //win sound
+        AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.winSound, false);
+        EndLevel();
     }
 
     public void GameOver()
@@ -152,6 +150,18 @@ public class GPCtrl : MonoBehaviour
         });
         EndLevel();
     }
+
+    public void EndLevel()
+    {
+        UI.endMenu.gameObject.SetActive(true);
+        UI.inGameMenu.gameObject.SetActive(false);
+        UI.endMenu.transform.DOScale(1, 0.5f);
+        UI.endMenu.UpdateTotalDestroyed(Player.numTargetDestroyed);
+        UI.endMenu.UpdateEndScore(Player.currentScore);
+        UI.endMenu.UpdateMaxCombo(Player.maxCombo);
+    }
+
+
 
     public void LaunchLevel()
     {
