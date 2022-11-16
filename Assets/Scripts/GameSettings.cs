@@ -21,4 +21,8 @@ public class GameSettings : ScriptableObject
     public AudioClip winSound;
     public AudioClip gunSound;
     public AudioClip windSound;
+
+    [Header("OFFSET TARGET LIFE")]
+    public float targetOffset;
+
 }

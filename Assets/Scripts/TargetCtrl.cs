@@ -27,25 +27,28 @@ public class TargetCtrl : MonoBehaviour
 
         if (GP.levelState == GPCtrl.LevelState.Before) return;
         if (targetData.targetSide == TargetData.TargetSide.right) transform.rotation *= Quaternion.Euler(0, 180, 0);
-        timingIndicator.DOFillAmount(1, targetData.duration).
+        timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
-            if (!GetComponent<BoxCollider>().enabled) return;
-            transform.SetAsLastSibling();
-            if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
-            GP.targetIndicator.MoveToFirstTarget();
-            transform.DOScale(0, 0.2f).OnComplete(() => {
-                GP.Player.currentCombo = 0;
-                GP.Player.scoreMultiplier = 1;
-                GP.Player.health -= DataHolder.instance.GameSettings.targetDamage;
-                GP.UI.UpdateLifeBar(GP.Player.health);
-                GP.UI.UpdateCombo(GP.Player.currentCombo);
-                Destroy(gameObject);
-                if (GP.lowPassFilter) return;
-                DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .22f).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm
-                    //if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
-                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .22f).SetEase(GP.outLowPass); 
-                
+            timingIndicator.DOFillAmount(1, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                if (!GetComponent<BoxCollider>().enabled) return;
+                transform.SetAsLastSibling();
+                if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
+                GP.targetIndicator.MoveToFirstTarget();
+                transform.DOScale(0, 0.2f).OnComplete(() => {
+                    GP.Player.currentCombo = 0;
+                    GP.Player.scoreMultiplier = 1;
+                    GP.Player.health -= DataHolder.instance.GameSettings.targetDamage;
+                    GP.UI.UpdateLifeBar(GP.Player.health);
+                    GP.UI.UpdateCombo(GP.Player.currentCombo);
+                    Destroy(gameObject);
+                    if (GP.lowPassFilter) return;
+                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .22f).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm
+                                                                                                                                                                                            //if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
+                        DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .22f).SetEase(GP.outLowPass);
+
+                    });
                 });
             });
         });
