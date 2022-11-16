@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ComboCtrl : MonoBehaviour
-{
-    [Header("x = threshold, y = multiplier, z = health gain")]
-    [SerializeField] public List<Vector3Int> comboTable;
-
-
-    
-
+{   
     public int ApplyMultiplierToScore(int _score, int _combo)
     {
-        for (int i = 0; i < comboTable.Count; i++)
+        for (int i = 0; i < DataHolder.instance.GameSettings.comboTable.Count; i++)
         {
-            if (_combo < comboTable[i].x) return _score * comboTable[i].y;
+            if (_combo < DataHolder.instance.GameSettings.comboTable[i].x) return _score * DataHolder.instance.GameSettings.comboTable[i].y;
         }
-        return _score * comboTable[comboTable.Count - 1].y;
+        return _score * DataHolder.instance.GameSettings.comboTable[DataHolder.instance.GameSettings.comboTable.Count - 1].y;
     }
 }
