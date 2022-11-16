@@ -42,6 +42,8 @@ public class PlayerCtrl : MonoBehaviour
         rightController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalRightGradient;
         leftController.GetComponent<XRInteractorLineVisual>().invalidColorGradient = normalLeftGradient;
         Vibration = GetComponent<VibrationCtrl>();
+        rightController.transform.parent.GetComponentInChildren<AudioSource>().clip = DataHolder.instance.GameSettings.gunSound;
+        leftController.transform.parent.GetComponentInChildren<AudioSource>().clip = DataHolder.instance.GameSettings.gunSound;
     }
     void Update()
     {
@@ -63,7 +65,6 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootRight()
     {
-        //AudioEngine.instance.PlaySound(shootSound, false);
         rightController.transform.parent.GetComponentInChildren<AudioSource>().Play();
         Vibration.SendHaptics(Vibration.rightController);
         rightControllerAnimation.Play(rightControllerAnimation.clip.name);
@@ -98,7 +99,6 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootLeft()
     {
-        //AudioEngine.instance.PlaySound(shootSound, false);
         leftController.transform.parent.GetComponentInChildren<AudioSource>().Play();
         Vibration.SendHaptics(Vibration.leftController);
         leftControllerAnimation.Play(leftControllerAnimation.clip.name);

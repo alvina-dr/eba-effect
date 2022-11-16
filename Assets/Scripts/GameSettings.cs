@@ -19,4 +19,5 @@ public class GameSettings : ScriptableObject
 
     [Header("SOUND FX")]
     public AudioClip winSound;
+    public AudioClip gunSound;
 }
