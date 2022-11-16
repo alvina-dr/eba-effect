@@ -28,7 +28,7 @@ public class CSVReader : MonoBehaviour
         GPCtrl.instance.levelMusic = Resources.Load<AudioClip>("Musics/"+data[0]);
         data.RemoveAt(0);
         
-        if (data[0] != null) GPCtrl.instance.offset = float.Parse(data[0]);
+        if (data[0] != null) GPCtrl.instance.offset = float.Parse(data[0])/1000;
         data.RemoveAt(0);
 
         if(data[0] != null) GPCtrl.instance.bpm = float.Parse(data[0]);
