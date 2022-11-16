@@ -34,7 +34,6 @@ public class TargetIndicator : MonoBehaviour
     {
         if (GP.targetPool.transform.childCount == 0)
         {
-            Debug.Log("no children so no indicator");
             image.enabled = false;
         }
         else

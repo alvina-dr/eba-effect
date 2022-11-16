@@ -31,6 +31,8 @@ public class TargetCtrl : MonoBehaviour
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
             if (!GetComponent<BoxCollider>().enabled) return;
+            transform.SetAsLastSibling();
+            if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
             GP.targetIndicator.MoveToFirstTarget();
             transform.DOScale(0, 0.2f).OnComplete(() => {
                 GP.Player.currentCombo = 0;
@@ -78,6 +80,8 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.numTargetDestroyed++;
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
+        transform.SetAsLastSibling();
+        if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
         GP.targetIndicator.MoveToFirstTarget();
         particles.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {

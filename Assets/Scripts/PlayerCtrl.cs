@@ -126,6 +126,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootComputer()
     {
+        AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
