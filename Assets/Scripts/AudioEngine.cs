@@ -9,6 +9,7 @@ public class AudioEngine : MonoBehaviour
     public static AudioEngine instance = null;
     public AudioSource musicStream;
     public AudioSource soundStream;
+    public AudioSource windStream;
     public UnityEvent weakTempoEvent;
     public UnityEvent strongTempoEvent;
 
@@ -33,6 +34,8 @@ public class AudioEngine : MonoBehaviour
         }
     }
 
+    
+
     public void PlayMusic(AudioClip soundClipToPlay, bool loop)
     {
         musicStream.clip = soundClipToPlay;
@@ -51,6 +54,9 @@ public class AudioEngine : MonoBehaviour
     {
         secondPerBeat = 60f / bpm;
         lowPass = GetComponent<AudioLowPassFilter>();
+        windStream.clip = DataHolder.instance.GameSettings.windSound;
+        windStream.loop = true;
+        windStream.Play();
     }
 
 
