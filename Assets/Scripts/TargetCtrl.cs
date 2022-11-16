@@ -71,12 +71,15 @@ public class TargetCtrl : MonoBehaviour
 
     }
 
-    public void DestroyTargetOnHit()
+    public void DestroyTargetOnHit(TargetData.TargetSide targetSide)
     {
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
         int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
-        GP.Player.currentScore += GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
+        int _score = GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
+        if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
+        Debug.Log(_score);
+        GP.Player.currentScore += _score;
         GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.health += 5; //hard value need to be variable to tweak later
         GP.UI.UpdateLifeBar(GP.Player.health);

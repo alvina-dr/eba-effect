@@ -86,7 +86,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
             else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
-            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.right);
             //_projectile.DeactivateProjectile();
         }
 
@@ -119,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
             else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
-            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.left);
             //_projectile.DeactivateProjectile();
         }
     }
@@ -129,17 +129,17 @@ public class PlayerCtrl : MonoBehaviour
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, Mathf.Infinity))
         {
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
             else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
-            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.left);
             //_projectile.DeactivateProjectile();
         }
         _projectile.SetupProjectile();
         _projectile.transform.position = transform.position;
-        _projectile.GetComponentInChildren<Rigidbody>().AddForce(Camera.main.transform.forward * throwPower + transform.up * throwUpwardPower, ForceMode.Impulse);
-        _projectile.transform.forward = Camera.main.transform.forward;
+        _projectile.GetComponentInChildren<Rigidbody>().AddForce(Camera.main.ScreenPointToRay(Input.mousePosition).direction * throwPower + transform.up * throwUpwardPower, ForceMode.Impulse);
+        _projectile.transform.forward = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
     }
 
     public void MoveCamera()

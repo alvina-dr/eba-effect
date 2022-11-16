@@ -16,6 +16,7 @@ public class GameSettings : ScriptableObject
 
     [Header("COMBOS | x = threshold, y = multiplier, z = health gain")]
     public List<Vector3Int> comboTable;
+    public int goodSideMultiplier;
 
     [Header("SOUND FX")]
     public AudioClip winSound;
