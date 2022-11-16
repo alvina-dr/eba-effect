@@ -124,6 +124,7 @@ public class GPCtrl : MonoBehaviour
         //make ui well done
         //win sound
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.winSound, false);
+        UI.endMenu.UpdateTitle(true);
         EndLevel();
     }
 
@@ -136,7 +137,7 @@ public class GPCtrl : MonoBehaviour
         //    Destroy(FindObjectsOfType<TargetCtrl>()[0].gameObject);
         //    i--;
         //}
-        Debug.Log("GAME OVER");
+        UI.endMenu.UpdateTitle(false);
         AudioEngine.instance.musicStream.DOPitch(0, .5f).OnComplete(() => {
             AudioEngine.instance.musicStream.volume = 0;
 

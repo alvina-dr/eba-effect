@@ -11,6 +11,7 @@ public class EndMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI endScoreText;
     [SerializeField] TextMeshProUGUI maxComboText;
     [SerializeField] TextMeshProUGUI totalDestroyedText;
+    [SerializeField] TextMeshProUGUI titleText;
 
     public void UpdateEndScore(int _endScore)
     {
@@ -28,5 +29,11 @@ public class EndMenu : MonoBehaviour
     {
         maxCombo = _maxCombo;
         maxComboText.text = "Max combo : " +  maxCombo.ToString();
+    }
+
+    public void UpdateTitle(bool hasWon)
+    {
+        if (hasWon) titleText.text = "WELL DONE";
+        else titleText.text = "GAME OVER";
     }
 }
