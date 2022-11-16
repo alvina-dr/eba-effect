@@ -82,6 +82,7 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentScore += _score;
         GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.health += 5; //hard value need to be variable to tweak later
+        if (GP.Player.health > 100) GP.Player.health = 100;
         GP.UI.UpdateLifeBar(GP.Player.health);
         GP.Player.numTargetDestroyed++;
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
