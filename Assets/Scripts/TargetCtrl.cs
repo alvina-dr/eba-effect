@@ -93,7 +93,7 @@ public class TargetCtrl : MonoBehaviour
     {
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
-        int percentage = Mathf.RoundToInt(chrono / targetData.duration - DataHolder.instance.GameSettings.targetOffset * 100);
+        int percentage = Mathf.RoundToInt(chrono / (targetData.duration - DataHolder.instance.GameSettings.targetOffset) * 100);
         int _score = GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
         if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
         Debug.Log(_score);
