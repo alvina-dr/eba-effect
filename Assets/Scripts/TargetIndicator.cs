@@ -9,6 +9,8 @@ public class TargetIndicator : MonoBehaviour
     bool animationCanLoop = true;
     Image image;
     GPCtrl GP;
+    public TargetData.TargetSide targetSide;
+    TargetCtrl currentTarget;
 
     void Start()
     {
@@ -35,11 +37,23 @@ public class TargetIndicator : MonoBehaviour
         if (GP.targetPool.transform.childCount == 0)
         {
             image.enabled = false;
+            currentTarget = null;
         }
         else
         {
             image.enabled = true;
-            transform.parent.transform.position = GP.targetPool.transform.GetChild(0).position + new Vector3(0, 0.38f, -0.2f); ;
+            currentTarget = null;
+            for (int i = 0; i < GP.targetPool.transform.childCount; i++)
+            {
+                if (GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>().targetData.targetSide == targetSide)
+                {
+                    currentTarget = GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>();
+                    transform.parent.transform.position = GP.targetPool.transform.GetChild(i).position + new Vector3(0, 0.38f, -0.2f);
+                    Debug.Log("take target as current target");
+                    break;
+                }
+            }
+            if (currentTarget == null) image.enabled = false;
         }
     }
 }

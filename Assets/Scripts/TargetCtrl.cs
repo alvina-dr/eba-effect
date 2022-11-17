@@ -33,9 +33,9 @@ public class TargetCtrl : MonoBehaviour
             timingIndicator.DOFillAmount(1, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
             {
                 if (!GetComponent<BoxCollider>().enabled) return;
-                transform.SetAsLastSibling();
-                if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
-                GP.targetIndicator.MoveToFirstTarget();
+                transform.SetParent(null);
+                GP.rightTargetIndicator.MoveToFirstTarget();
+                GP.leftTargetIndicator.MoveToFirstTarget();
                 transform.DOScale(0, 0.2f).OnComplete(() => {
                     GP.Player.currentCombo = 0;
                     GP.Player.scoreMultiplier = 1;
@@ -75,7 +75,7 @@ public class TargetCtrl : MonoBehaviour
     {
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
-        int percentage = Mathf.RoundToInt(chrono / targetData.duration * 100);
+        int percentage = Mathf.RoundToInt(chrono / targetData.duration - DataHolder.instance.GameSettings.targetOffset * 100);
         int _score = GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
         if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
         Debug.Log(_score);
@@ -87,9 +87,9 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.numTargetDestroyed++;
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
-        transform.SetAsLastSibling();
-        if (GP.targetPool.transform.childCount == 1) transform.SetParent(null);
-        GP.targetIndicator.MoveToFirstTarget();
+        transform.SetParent(null);
+        GP.rightTargetIndicator.MoveToFirstTarget();
+        GP.leftTargetIndicator.MoveToFirstTarget();
         particles.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {

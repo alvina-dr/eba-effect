@@ -27,7 +27,8 @@ public class GPCtrl : MonoBehaviour
     public AudioClip levelMusic;
     public float offset;
     public float bpm;
-    public TargetIndicator targetIndicator;
+    public TargetIndicator rightTargetIndicator;
+    public TargetIndicator leftTargetIndicator;
     [SerializeField] public GameObject targetPool;
 
     [Header("DEBUG TOOLS")]
@@ -63,7 +64,6 @@ public class GPCtrl : MonoBehaviour
         UI = FindObjectOfType<UICtrl>();
         Projectile = FindObjectOfType<ProjectilePool>();
         Combo = GetComponent<ComboCtrl>();
-        targetIndicator = FindObjectOfType<TargetIndicator>();
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
         _chrono -= offset;
@@ -96,7 +96,8 @@ public class GPCtrl : MonoBehaviour
         TargetCtrl _target = Instantiate(targetPrefab, targetPool.transform).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
-        targetIndicator.MoveToFirstTarget();
+        rightTargetIndicator.MoveToFirstTarget();
+        leftTargetIndicator.MoveToFirstTarget();
     }
 
     public void TargetLevelSetup()
