@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2336346832750790426}
   - component: {fileID: 2336346832750790425}
   m_Layer: 0
-  m_Name: Long cloud
+  m_Name: long-cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
