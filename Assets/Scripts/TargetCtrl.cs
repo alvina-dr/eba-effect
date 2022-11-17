@@ -12,8 +12,13 @@ public class TargetCtrl : MonoBehaviour
     [SerializeField] private Image timingIndicator;
     bool animationCanLoop = true;
     [SerializeField] GameObject targetHinge;
+    [SerializeField] MeshRenderer targetHingeRenderer;
+    [SerializeField] SkinnedMeshRenderer helixRenderer;
     ParticleSystem particles;
-
+    [SerializeField] Material redTargetMaterial;
+    [SerializeField] Material redTargetEmissionMaterial;
+    [SerializeField] Material blueTargetMaterial;
+    [SerializeField] Material blueTargetEmissionMaterial;
 
     private void Start()
     {
@@ -26,10 +31,23 @@ public class TargetCtrl : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, -90, 0);
 
         if (GP.levelState == GPCtrl.LevelState.Before) return;
-        if (targetData.targetSide == TargetData.TargetSide.right) transform.rotation *= Quaternion.Euler(0, 180, 0);
+        if (targetData.targetSide == TargetData.TargetSide.right)
+        {
+            helixRenderer.material = blueTargetMaterial; 
+            targetHingeRenderer.material = blueTargetMaterial;
+        }
         timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
         /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
         {
+            if (targetData.targetSide == TargetData.TargetSide.right)
+            {
+                helixRenderer.material = blueTargetEmissionMaterial;
+                targetHingeRenderer.material = blueTargetEmissionMaterial;
+            } else
+            {
+                helixRenderer.material = redTargetEmissionMaterial;
+                targetHingeRenderer.material = redTargetEmissionMaterial;
+            }
             timingIndicator.DOFillAmount(1, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
             {
                 if (!GetComponent<BoxCollider>().enabled) return;

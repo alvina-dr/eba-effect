@@ -49,7 +49,6 @@ public class TargetIndicator : MonoBehaviour
                 {
                     currentTarget = GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>();
                     transform.parent.transform.position = GP.targetPool.transform.GetChild(i).position + new Vector3(0, 0.38f, -0.2f);
-                    Debug.Log("take target as current target");
                     break;
                 }
             }
