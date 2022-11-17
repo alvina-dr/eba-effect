@@ -47,13 +47,14 @@ public class PlayerCtrl : MonoBehaviour
     }
     void Update()
     {
-        if (GPCtrl.instance != null && GP.computerMode)
+        if (GPCtrl.instance == null || (GPCtrl.instance != null && GP.computerMode))
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 ShootComputer();
             }
-            MoveCamera();
+            if (GPCtrl.instance != null && GP.computerMode)
+                MoveCamera();
         }
 
     }
@@ -127,8 +128,9 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootComputer()
     {
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.gunSound, false);
-        ProjectileCtrl _projectile = GP.Projectile.GetProjectile();
-        RaycastHit hit;
+        ProjectileCtrl _projectile;
+        if (GP != null) _projectile = GP.Projectile.GetProjectile();
+        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>(); _projectile.SetupProjectile(); RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, Mathf.Infinity))
         {
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
