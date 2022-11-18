@@ -62,10 +62,8 @@ public class TargetCtrl : MonoBehaviour
                     GP.UI.UpdateCombo(GP.Player.currentCombo);
                     Destroy(gameObject);
                     if (GP.lowPassFilter) return;
-                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, .22f).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm
-                                                                                                                                                                                            //if (GP.levelState == GPCtrl.LevelState.Over || GP.levelState == GPCtrl.LevelState.Ending) return;
-                        DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, .22f).SetEase(GP.outLowPass);
-
+                    DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 0, GP.bpm * 0.00171875f ).SetEase(GP.inLowPass).OnComplete(() => { //shoud last 0,00171875 * bpm .22f
+                        DOTween.To(() => AudioEngine.instance.lowPass.cutoffFrequency, x => AudioEngine.instance.lowPass.cutoffFrequency = x, 22000, GP.bpm * 0.00171875f).SetEase(GP.outLowPass);
                     });
                 });
             });
