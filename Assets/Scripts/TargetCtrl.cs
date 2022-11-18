@@ -132,13 +132,17 @@ public class TargetCtrl : MonoBehaviour
 
     public void DestroyButtonTarget()
     {
+        float ActualScale = gameObject.transform.localScale.x;
         particles.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, 90), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
                     GetComponent<TargetButton>().OnShoot();
-                    Destroy(gameObject);
-                });
+                    targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, -90), .3f).OnComplete(() =>
+                    {
+                        transform.DOScale(ActualScale, 0.1f);
+                        });
+                    });
             });
         });
     }
