@@ -36,8 +36,8 @@ public class TargetCtrl : MonoBehaviour
             helixRenderer.material = blueTargetMaterial; 
             targetHingeRenderer.material = blueTargetMaterial;
         }
-        timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
-        /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
+        //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
+        timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (targetData.targetSide == TargetData.TargetSide.right)
             {
@@ -48,7 +48,7 @@ public class TargetCtrl : MonoBehaviour
                 helixRenderer.material = redTargetEmissionMaterial;
                 targetHingeRenderer.material = redTargetEmissionMaterial;
             }
-            timingIndicator.DOFillAmount(1, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+            timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
             {
                 if (!GetComponent<BoxCollider>().enabled) return;
                 transform.SetParent(null);
@@ -130,13 +130,17 @@ public class TargetCtrl : MonoBehaviour
 
     public void DestroyButtonTarget()
     {
+        float ActualScale = gameObject.transform.localScale.x;
         particles.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, 90), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
                     GetComponent<TargetButton>().OnShoot();
-                    Destroy(gameObject);
-                });
+                    targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, -90), .3f).OnComplete(() =>
+                    {
+                        transform.DOScale(ActualScale, 0.1f);
+                        });
+                    });
             });
         });
     }

@@ -418,7 +418,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f8a4b96f29311a45b3f04104d8cd5b8, type: 2}
+  - {fileID: 2100000, guid: 4c4d476bc21e2514cad1f053520083e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -586,7 +586,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f8a4b96f29311a45b3f04104d8cd5b8, type: 2}
+  - {fileID: 2100000, guid: 4c4d476bc21e2514cad1f053520083e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5815,6 +5815,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  levelAsset: {fileID: 0}
+  Scalevalue: 20
 --- !u!114 &4604810493908572210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5830,6 +5832,12 @@ MonoBehaviour:
   targetData: {fileID: 0}
   timingIndicator: {fileID: 0}
   targetHinge: {fileID: 7454366302047648938}
+  targetHingeRenderer: {fileID: 0}
+  helixRenderer: {fileID: 0}
+  redTargetMaterial: {fileID: 0}
+  redTargetEmissionMaterial: {fileID: 0}
+  blueTargetMaterial: {fileID: 0}
+  blueTargetEmissionMaterial: {fileID: 0}
 --- !u!1 &8886187848128484302
 GameObject:
   m_ObjectHideFlags: 0
