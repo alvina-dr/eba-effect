@@ -49,7 +49,6 @@ public class GPCtrl : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -122,8 +121,6 @@ public class GPCtrl : MonoBehaviour
 
     public void WinGame()
     {
-        //make ui well done
-        //win sound
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.winSound, false);
         UI.endMenu.UpdateTitle(true);
         EndLevel();
@@ -162,8 +159,6 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.UpdateEndScore(Player.currentScore);
         UI.endMenu.UpdateMaxCombo(Player.maxCombo);
     }
-
-
 
     public void LaunchLevel()
     {

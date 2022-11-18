@@ -45,7 +45,7 @@ public class CSVReader : MonoBehaviour
             targetDataArray[i].spawnTime = float.Parse(data[4 * (i)])/1000; //first column
             targetDataArray[i].duration = _duration;/*float.Parse(data[4 * (i) + 1]);*/ //second column
             string[] _startPosition = data[4 * (i) + 1].Split(new string[] { "f", "\n" }, System.StringSplitOptions.None);
-            targetDataArray[i].startPosition = new Vector3(float.Parse(_startPosition[0]), float.Parse(_startPosition[1])*1.5f+1, 0);  //third column
+            targetDataArray[i].startPosition = new Vector3(float.Parse(_startPosition[0])*2, float.Parse(_startPosition[1])*1.5f+1, 0);  //third column
             targetDataArray[i].targetSide = (TargetData.TargetSide)System.Enum.Parse(typeof(TargetData.TargetSide), data[4 * (i) + 2]); //first column
         }
     }
