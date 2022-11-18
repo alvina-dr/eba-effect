@@ -36,8 +36,8 @@ public class TargetCtrl : MonoBehaviour
             helixRenderer.material = blueTargetMaterial; 
             targetHingeRenderer.material = blueTargetMaterial;
         }
-        timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
-        /*timingIndicator.transform.DOScale(0.0085f, targetData.duration).*/SetEase(Ease.Linear).OnComplete(() =>
+        //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
+        timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (targetData.targetSide == TargetData.TargetSide.right)
             {
@@ -48,7 +48,7 @@ public class TargetCtrl : MonoBehaviour
                 helixRenderer.material = redTargetEmissionMaterial;
                 targetHingeRenderer.material = redTargetEmissionMaterial;
             }
-            timingIndicator.DOFillAmount(1, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+            timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
             {
                 if (!GetComponent<BoxCollider>().enabled) return;
                 transform.SetParent(null);
