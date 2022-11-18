@@ -9,7 +9,7 @@ public class TargetCtrl : MonoBehaviour
     public TargetData targetData;
     float chrono;
     private GPCtrl GP;
-    [SerializeField] private Image timingIndicator;
+    [SerializeField] private GameObject timingIndicator;
     bool animationCanLoop = true;
     [SerializeField] GameObject targetHinge;
     [SerializeField] MeshRenderer targetHingeRenderer;
@@ -37,7 +37,10 @@ public class TargetCtrl : MonoBehaviour
             targetHingeRenderer.material = blueTargetMaterial;
         }
         //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
-        timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+        timingIndicator.transform.DOScale(1000, 0.001f);
+        timingIndicator.transform.DOScale(100f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+        { 
+        timingIndicator.transform.DOScale(1f, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (targetData.targetSide == TargetData.TargetSide.right)
             {
@@ -48,7 +51,7 @@ public class TargetCtrl : MonoBehaviour
                 helixRenderer.material = redTargetEmissionMaterial;
                 targetHingeRenderer.material = redTargetEmissionMaterial;
             }
-            timingIndicator.transform.DOScale(0.0085f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+            timingIndicator.transform.DOScale(0.0085f, DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
             {
                 if (!GetComponent<BoxCollider>().enabled) return;
                 transform.SetParent(null);
@@ -67,6 +70,7 @@ public class TargetCtrl : MonoBehaviour
                     });
                 });
             });
+        });
         });
 
     }
