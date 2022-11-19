@@ -453,6 +453,10 @@ MonoBehaviour:
   blueTargetMaterial: {fileID: 2100000, guid: daaaa0eb5197a854fa9a3cd7268e26a5, type: 2}
   blueTargetEmissionMaterial: {fileID: 2100000, guid: 3037227f48833e54dbe0aab57d409390,
     type: 2}
+  redIndicatorMaterial: {fileID: 2100000, guid: b8ac1aad2f156374bbce1fe5f64a2f19,
+    type: 2}
+  blueIndicatorMaterial: {fileID: 2100000, guid: e9a69765734db8e42946b46a14574895,
+    type: 2}
 --- !u!65 &537925153995118213
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5723,6 +5727,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 05cf685c644ef754ab25bb0cf981a9a2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ac1aad2f156374bbce1fe5f64a2f19, type: 2}
     - target: {fileID: 919132149155446097, guid: 05cf685c644ef754ab25bb0cf981a9a2,
         type: 3}
       propertyPath: m_Name

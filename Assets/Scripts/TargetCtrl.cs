@@ -20,6 +20,10 @@ public class TargetCtrl : MonoBehaviour
     [SerializeField] Material blueTargetMaterial;
     [SerializeField] Material blueTargetEmissionMaterial;
 
+    [SerializeField] Material redIndicatorMaterial;
+    [SerializeField] Material blueIndicatorMaterial;
+
+
     private void Start()
     {
         GP = GPCtrl.instance;
@@ -35,6 +39,7 @@ public class TargetCtrl : MonoBehaviour
         {
             helixRenderer.material = blueTargetMaterial; 
             targetHingeRenderer.material = blueTargetMaterial;
+            timingIndicator.GetComponent<MeshRenderer>().material = blueIndicatorMaterial;
         }
         //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
         timingIndicator.transform.localScale = new Vector3(1000, 1000, 1000);
