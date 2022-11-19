@@ -7,10 +7,14 @@ public class ProjectileCtrl : MonoBehaviour
      [SerializeField] float lifeDuration;
      [SerializeField] float chrono;
      public bool isActive = false;
+    [SerializeField] Material redProjectileMaterial;
+    [SerializeField] Material blueProjectileMaterial;
 
-    public void SetupProjectile()
+    public void SetupProjectile(TargetData.TargetSide _targetSide)
     {
         isActive = true;
+        if (_targetSide == TargetData.TargetSide.right) GetComponent<MeshRenderer>().material = blueProjectileMaterial;
+        else GetComponent<MeshRenderer>().material = redProjectileMaterial;
         gameObject.SetActive(true);
     }
 

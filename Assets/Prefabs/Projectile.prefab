@@ -51,6 +51,10 @@ MonoBehaviour:
   lifeDuration: 3
   chrono: 0
   isActive: 0
+  redProjectileMaterial: {fileID: 2100000, guid: f126784b335346745b2bc802a64293b2,
+    type: 2}
+  blueProjectileMaterial: {fileID: 2100000, guid: f4852a0a45f81e54db97ceb2454c5398,
+    type: 2}
 --- !u!33 &8579450653702059375
 MeshFilter:
   m_ObjectHideFlags: 0

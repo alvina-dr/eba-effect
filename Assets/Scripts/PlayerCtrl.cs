@@ -73,7 +73,7 @@ public class PlayerCtrl : MonoBehaviour
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
         else _projectile =  Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
-        _projectile.SetupProjectile();
+        _projectile.SetupProjectile(TargetData.TargetSide.right);
         _projectile.transform.position = rightController.transform.position + rightController.transform.forward.normalized/4*3;
         Vector3 _direction = rightController.transform.forward;
         _projectile.transform.forward = -_direction;
@@ -106,7 +106,8 @@ public class PlayerCtrl : MonoBehaviour
         RaycastHit hit;
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
-        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>(); _projectile.SetupProjectile();
+        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
+        _projectile.SetupProjectile(TargetData.TargetSide.left);
         _projectile.transform.position = leftController.transform.position + leftController.transform.forward.normalized/4*3;
         Vector3 _direction = leftController.transform.forward;
         _projectile.transform.forward = -_direction;
@@ -130,7 +131,9 @@ public class PlayerCtrl : MonoBehaviour
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
-        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>(); _projectile.SetupProjectile(); RaycastHit hit;
+        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
+        _projectile.SetupProjectile(TargetData.TargetSide.left);
+        RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, Mathf.Infinity))
         {
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
@@ -138,7 +141,6 @@ public class PlayerCtrl : MonoBehaviour
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.left);
             //_projectile.DeactivateProjectile();
         }
-        _projectile.SetupProjectile();
         _projectile.transform.position = transform.position;
         _projectile.GetComponentInChildren<Rigidbody>().AddForce(Camera.main.ScreenPointToRay(Input.mousePosition).direction * throwPower + transform.up * throwUpwardPower, ForceMode.Impulse);
         _projectile.transform.forward = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
