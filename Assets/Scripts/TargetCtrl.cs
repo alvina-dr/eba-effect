@@ -37,11 +37,10 @@ public class TargetCtrl : MonoBehaviour
             targetHingeRenderer.material = blueTargetMaterial;
         }
         //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
-        timingIndicator.transform.DOScale(1000, 0.001f);
+        timingIndicator.transform.localScale = new Vector3(1000, 1000, 1000);
         timingIndicator.transform.DOScale(150f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
-        { 
-        timingIndicator.transform.DOScale(1f, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
+            timingIndicator.transform.localScale = new Vector3(1, 1, 1);
             if (targetData.targetSide == TargetData.TargetSide.right)
             {
                 helixRenderer.material = blueTargetEmissionMaterial;
@@ -71,8 +70,6 @@ public class TargetCtrl : MonoBehaviour
                 });
             });
         });
-        });
-
     }
 
     void Update()
