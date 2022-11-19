@@ -22,13 +22,15 @@ public class TargetCtrl : MonoBehaviour
 
     [SerializeField] Material redIndicatorMaterial;
     [SerializeField] Material blueIndicatorMaterial;
+    [SerializeField] ParticleSystem blueParticle;
+    [SerializeField] ParticleSystem redParticle;
 
 
     private void Start()
     {
         GP = GPCtrl.instance;
-        particles = GetComponentInChildren<ParticleSystem>();
-        particles.gameObject.SetActive(false);
+        blueParticle.gameObject.SetActive(false);
+        redParticle.gameObject.SetActive(false);
         transform.rotation *= Quaternion.Euler(0, -90, 0);
         if (GP == null) return;
         transform.LookAt(Camera.main.transform);
@@ -111,8 +113,9 @@ public class TargetCtrl : MonoBehaviour
         GetComponent<BoxCollider>().enabled = false;
         transform.SetParent(null);
         GP.rightTargetIndicator.MoveToFirstTarget();
-        GP.leftTargetIndicator.MoveToFirstTarget();
-        particles.gameObject.SetActive(true);
+        GP.leftTargetIndicator.MoveToFirstTarget();        
+        if (targetSide == TargetData.TargetSide.left) redParticle.gameObject.SetActive(true);
+        else blueParticle.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
