@@ -639,13 +639,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetData: {fileID: 0}
   timingIndicator: {fileID: 0}
-  targetHinge: {fileID: 0}
+  targetHinge: {fileID: 1634116154129264008}
   targetHingeRenderer: {fileID: 0}
   helixRenderer: {fileID: 0}
   redTargetMaterial: {fileID: 0}
   redTargetEmissionMaterial: {fileID: 0}
   blueTargetMaterial: {fileID: 0}
   blueTargetEmissionMaterial: {fileID: 0}
+  redIndicatorMaterial: {fileID: 0}
+  blueIndicatorMaterial: {fileID: 0}
+  blueParticle: {fileID: 8043313840988510423}
+  redParticle: {fileID: 8043313840988510423}
 --- !u!1 &6101902576262898213
 GameObject:
   m_ObjectHideFlags: 0
