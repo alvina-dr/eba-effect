@@ -14,7 +14,6 @@ public class TargetCtrl : MonoBehaviour
     [SerializeField] GameObject targetHinge;
     [SerializeField] MeshRenderer targetHingeRenderer;
     [SerializeField] SkinnedMeshRenderer helixRenderer;
-    ParticleSystem particles;
     [SerializeField] Material redTargetMaterial;
     [SerializeField] Material redTargetEmissionMaterial;
     [SerializeField] Material blueTargetMaterial;
@@ -127,7 +126,7 @@ public class TargetCtrl : MonoBehaviour
 
     public void DestroyStartTarget()
     {
-        particles.gameObject.SetActive(true);
+        redParticle.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
@@ -140,7 +139,7 @@ public class TargetCtrl : MonoBehaviour
     public void DestroyButtonTarget()
     {
         float ActualScale = gameObject.transform.localScale.x;
-        particles.gameObject.SetActive(true);
+        redParticle.gameObject.SetActive(true);
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(0, 0, 90), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
