@@ -38,7 +38,7 @@ public class TargetCtrl : MonoBehaviour
         }
         //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
         timingIndicator.transform.DOScale(1000, 0.001f);
-        timingIndicator.transform.DOScale(100f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
+        timingIndicator.transform.DOScale(150f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
         { 
         timingIndicator.transform.DOScale(1f, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
