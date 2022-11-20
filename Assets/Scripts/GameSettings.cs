@@ -14,7 +14,6 @@ public class GameSettings : ScriptableObject
     public float vibrationDuration = 0.1f;
     public float vibrationOffset = 0.5f;
 
-
     [Header("SCORE")]
     public int maxPointPerTarget = 120;
 
@@ -26,6 +25,9 @@ public class GameSettings : ScriptableObject
     public AudioClip winSound;
     public AudioClip gunSound;
     public AudioClip windSound;
+
+    [Header("MUSIC")]
+    public AudioClip mainMenuMusic;
 
     [Header("OFFSET TARGET LIFE")]
     public float targetOffset;
