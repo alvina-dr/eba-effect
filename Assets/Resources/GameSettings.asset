@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLifeValue: 50
   targetDamage: 10
+  vibrationDuration: 0.1
+  vibrationOffset: 0.1
   maxPointPerTarget: 120
   comboTable:
   - {x: 2, y: 1, z: 0}
@@ -25,4 +27,5 @@ MonoBehaviour:
   winSound: {fileID: 8300000, guid: f6ba245743e20874da90fb076279880c, type: 3}
   gunSound: {fileID: 8300000, guid: 84608d21ed8e64a44a76b0fd9470b2fa, type: 3}
   windSound: {fileID: 8300000, guid: 7c5675ea47ffd144d828947e9ecc4847, type: 3}
+  mainMenuMusic: {fileID: 8300000, guid: 8119f67e2436dba44bfad905c61f4b23, type: 3}
   targetOffset: 0.5

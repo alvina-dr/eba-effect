@@ -8,10 +8,10 @@ public class MainMenu : MonoBehaviour
     public TextAsset[] levelAssetArray;
     public GameObject buttonLevelPrefab;
     public GameObject buttonLevelList;
-    public AudioClip menuMusic;
 
     void Start()
     {
+        Time.timeScale = 1;
         levelAssetArray = Resources.LoadAll<TextAsset>("Levels");
         for (int i = 0; i < levelAssetArray.Length; i++)
         {
@@ -22,11 +22,11 @@ public class MainMenu : MonoBehaviour
             _button.GetComponentInChildren<TextMeshProUGUI>().text = levelAssetArray[i].name;
             _button.GetComponent<TargetButton>().levelAsset = levelAssetArray[i];
         }
-        AudioEngine.instance.PlayMusic(menuMusic, true);
+        AudioEngine.instance.PlayMusic(DataHolder.instance.GameSettings.mainMenuMusic, true);
     }
 
-    void Update()
+    public void ExitGame()
     {
-        
+        Application.Quit();
     }
 }

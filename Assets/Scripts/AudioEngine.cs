@@ -10,6 +10,7 @@ public class AudioEngine : MonoBehaviour
     public AudioSource musicStream;
     public AudioSource soundStream;
     public AudioSource windStream;
+    public AudioSource gunStream;
     public UnityEvent weakTempoEvent;
     public UnityEvent strongTempoEvent;
 
@@ -48,6 +49,13 @@ public class AudioEngine : MonoBehaviour
         soundStream.clip = soundClipToPlay;
         soundStream.Play();
         soundStream.loop = loop;
+    }
+
+    public void PlayGunSound(AudioClip soundClipToPlay, bool loop)
+    {
+        gunStream.clip = soundClipToPlay;
+        gunStream.Play();
+        gunStream.loop = loop;
     }
 
     private void Start()

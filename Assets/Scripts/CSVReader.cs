@@ -34,9 +34,15 @@ public class CSVReader : MonoBehaviour
         if(data[0] != null) GPCtrl.instance.bpm = float.Parse(data[0]);
         data.RemoveAt(0);
 
-        if (data[0] != null) _duration = float.Parse(data[0]);
+        if (data[0] != null) _duration = float.Parse(data[0])/1000;
         data.RemoveAt(0);
-        
+
+        if (data[0] != null) GPCtrl.instance.musicDuration = float.Parse(data[0]) / 1000;
+        data.RemoveAt(0);
+        data.RemoveAt(0);
+        data.RemoveAt(0);
+        data.RemoveAt(0);
+
         int tableSize = data.Count / 4;
         targetDataArray = new TargetData[tableSize];
         for (int i = 0; i < tableSize; i++)
