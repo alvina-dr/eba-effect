@@ -67,7 +67,10 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootRight()
     {
         rightController.transform.parent.GetComponentInChildren<AudioSource>().Play();
-        Vibration.SendHaptics(Vibration.rightController);
+        transform.DOScale(1, DataHolder.instance.GameSettings.vibrationOffset).OnComplete(() =>
+        {
+            Vibration.SendHaptics(Vibration.rightController);
+        });
         rightControllerAnimation.Play(rightControllerAnimation.clip.name);
         RaycastHit hit;
         ProjectileCtrl _projectile;
@@ -101,7 +104,10 @@ public class PlayerCtrl : MonoBehaviour
     public void ShootLeft()
     {
         leftController.transform.parent.GetComponentInChildren<AudioSource>().Play();
-        Vibration.SendHaptics(Vibration.leftController);
+        transform.DOScale(1, DataHolder.instance.GameSettings.vibrationOffset).OnComplete(() =>
+        {
+            Vibration.SendHaptics(Vibration.leftController);
+        });
         leftControllerAnimation.Play(leftControllerAnimation.clip.name);
         RaycastHit hit;
         ProjectileCtrl _projectile;

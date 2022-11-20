@@ -14,7 +14,7 @@ public class VibrationCtrl : MonoBehaviour
     {
         if (_controller != null)
         {
-            _controller.SendHapticImpulse(0.9f, 0.1f);
+            _controller.SendHapticImpulse(0.9f, DataHolder.instance.GameSettings.vibrationDuration);
         }
     }
 

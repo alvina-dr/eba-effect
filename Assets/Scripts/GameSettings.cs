@@ -10,6 +10,10 @@ public class GameSettings : ScriptableObject
     public int startLifeValue = 50;
     public int targetDamage = 10;
 
+    [Header("HAPTIC")]
+    public float vibrationDuration = 0.1f;
+    public float vibrationOffset = 0.5f;
+
 
     [Header("SCORE")]
     public int maxPointPerTarget = 120;
