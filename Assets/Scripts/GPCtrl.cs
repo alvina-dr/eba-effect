@@ -83,7 +83,7 @@ public class GPCtrl : MonoBehaviour
         }
         _chrono += Time.deltaTime;
         TargetLevelSetup();
-        if (levelState == LevelState.Ending && _chrono >= musicDuration) WinGame();
+        if (levelState == LevelState.Ending && _chrono >= musicDuration + DataHolder.instance.GameSettings.endMusicOffset) WinGame();
     }
 
 

@@ -28,6 +28,7 @@ public class GameSettings : ScriptableObject
 
     [Header("MUSIC")]
     public AudioClip mainMenuMusic;
+    public float endMusicOffset = 0;
 
     [Header("OFFSET TARGET LIFE")]
     public float targetOffset;
