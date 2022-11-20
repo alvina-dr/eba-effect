@@ -27,6 +27,7 @@ public class GPCtrl : MonoBehaviour
     public AudioClip levelMusic;
     public float offset;
     public float bpm;
+    public float musicDuration;
     public TargetIndicator rightTargetIndicator;
     public TargetIndicator leftTargetIndicator;
     [SerializeField] public GameObject targetPool;
