@@ -33,7 +33,7 @@ public class UICtrl : MonoBehaviour
     public void UpdateLifeBar(int _health)
     {
         healthBar.value = _health;
-        if (healthBar.value <= 0) GP.GameOver();
+        if (healthBar.value <= 0) GP.LooseGame();
         if (healthBar.value > 100) healthBar.value = 100;
     }
 

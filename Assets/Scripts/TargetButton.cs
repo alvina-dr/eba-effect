@@ -19,15 +19,9 @@ public class TargetButton : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
-
     public void OnShoot()
     {
         onShootEvent.Invoke();
-        Debug.Log("this is invoke");
     }
 
     public void LoadLevel()

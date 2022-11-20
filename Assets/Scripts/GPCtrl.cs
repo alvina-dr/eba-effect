@@ -83,11 +83,7 @@ public class GPCtrl : MonoBehaviour
         }
         _chrono += Time.deltaTime;
         TargetLevelSetup();
-        if (levelState == LevelState.Ending && FindObjectOfType<TargetCtrl>() == null) //change later when target pool is done | bad
-        {
-            levelState = LevelState.Over;
-            WinGame();
-        }
+        if (levelState == LevelState.Ending && _chrono >= musicDuration) WinGame();
     }
 
 
@@ -122,12 +118,13 @@ public class GPCtrl : MonoBehaviour
 
     public void WinGame()
     {
+        levelState = LevelState.Over;
         AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.winSound, false);
         UI.endMenu.UpdateTitle(true);
         EndLevel();
     }
 
-    public void GameOver()
+    public void LooseGame()
     {
         if (cheatMode) return;
         levelState = LevelState.Over; //will need to destroy all targets when game over
@@ -139,10 +136,7 @@ public class GPCtrl : MonoBehaviour
         UI.endMenu.UpdateTitle(false);
         AudioEngine.instance.musicStream.DOPitch(0, .5f).OnComplete(() => {
             AudioEngine.instance.musicStream.volume = 0;
-
             AudioEngine.instance.musicStream.Stop();
-            //DOTween.To(() => AudioEngine.instance.musicStream.volume, x => AudioEngine.instance.musicStream.volume = x, 0, .2f);
-
             AudioEngine.instance.musicStream.DOPitch(1, .1f).OnComplete(() => {
                 AudioEngine.instance.musicStream.volume = 1;
                 AudioEngine.instance.lowPass.cutoffFrequency = 22000;

@@ -51,10 +51,18 @@ public class PlayerCtrl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                ShootComputer();
+                ShootComputerLeft();
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                ShootComputerRight();
             }
             if (GPCtrl.instance != null && GP.computerMode)
                 MoveCamera();
+        }
+        if (GPCtrl.instance != null)
+        {
+            //pause menu
         }
 
     }
@@ -132,9 +140,9 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void ShootComputer()
+    public void ShootComputerLeft()
     {
-        AudioEngine.instance.PlaySound(DataHolder.instance.GameSettings.gunSound, false);
+        AudioEngine.instance.PlayGunSound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
         else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
@@ -145,6 +153,26 @@ public class PlayerCtrl : MonoBehaviour
             if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
             else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
             else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.left);
+            //_projectile.DeactivateProjectile();
+        }
+        _projectile.transform.position = transform.position;
+        _projectile.GetComponentInChildren<Rigidbody>().AddForce(Camera.main.ScreenPointToRay(Input.mousePosition).direction * throwPower + transform.up * throwUpwardPower, ForceMode.Impulse);
+        _projectile.transform.forward = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
+    }
+
+    public void ShootComputerRight()
+    {
+        AudioEngine.instance.PlayGunSound(DataHolder.instance.GameSettings.gunSound, false);
+        ProjectileCtrl _projectile;
+        if (GP != null) _projectile = GP.Projectile.GetProjectile();
+        else _projectile = Instantiate(projectilePrefab).GetComponent<ProjectileCtrl>();
+        _projectile.SetupProjectile(TargetData.TargetSide.right);
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, Mathf.Infinity))
+        {
+            if (GP == null) hit.transform.GetComponent<TargetCtrl>().DestroyButtonTarget();
+            else if (GP.levelState == GPCtrl.LevelState.Before) hit.transform.GetComponent<TargetCtrl>().DestroyStartTarget();
+            else hit.transform.GetComponent<TargetCtrl>().DestroyTargetOnHit(TargetData.TargetSide.right);
             //_projectile.DeactivateProjectile();
         }
         _projectile.transform.position = transform.position;
