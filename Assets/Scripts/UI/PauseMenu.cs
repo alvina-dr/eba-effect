@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,5 +15,15 @@ public class PauseMenu : MonoBehaviour
         {
             gameObject.SetActive(false);
         });
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
