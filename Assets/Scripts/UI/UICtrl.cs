@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UICtrl : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UICtrl : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI comboText;
     [SerializeField] public EndMenu endMenu;
+    [SerializeField] public PauseMenu pauseMenu;
     [SerializeField] public GameObject inGameMenu;
     [SerializeField] Slider healthBar;
 
@@ -45,5 +47,11 @@ public class UICtrl : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene("Game");
+    }
+
+    public void OpenPauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(true);
+        pauseMenu.transform.DOScale(1, 0.3f);
     }
 }
