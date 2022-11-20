@@ -24,8 +24,8 @@ public class MainMenu : MonoBehaviour
         AudioEngine.instance.PlayMusic(DataHolder.instance.GameSettings.mainMenuMusic, true);
     }
 
-    void Update()
+    public void ExitGame()
     {
-        
+        Application.Quit();
     }
 }
