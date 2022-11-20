@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6c84d12aa3524488d4691a15041de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 2
+  animationTime: 5
   moveForward: 1
-  moveSpeed: 10
+  moveSpeed: 6
   floatInAir: 1
   floatAmplitude: 1
 --- !u!1001 &6100756597752472228
