@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ClosePauseMenu()
     {
+        Time.timeScale = 1;
         transform.DOScale(0, .3f).OnComplete(() =>
         {
             gameObject.SetActive(false);

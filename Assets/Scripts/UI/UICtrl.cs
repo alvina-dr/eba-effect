@@ -52,6 +52,10 @@ public class UICtrl : MonoBehaviour
     public void OpenPauseMenu()
     {
         pauseMenu.gameObject.SetActive(true);
-        pauseMenu.transform.DOScale(1, 0.3f);
+        AudioEngine.instance.musicStream.Pause();
+        pauseMenu.transform.DOScale(1, 0.3f).OnComplete(() =>
+        {
+            Time.timeScale = 0;
+        });
     }
 }
