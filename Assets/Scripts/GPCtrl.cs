@@ -62,6 +62,7 @@ public class GPCtrl : MonoBehaviour
 
     public void Start()
     {
+        Time.timeScale = 1;
         CSV = GetComponent<CSVReader>();   
         Player = FindObjectOfType<PlayerCtrl>();
         UI = FindObjectOfType<UICtrl>();
