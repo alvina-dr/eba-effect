@@ -34,25 +34,25 @@ public class TargetIndicator : MonoBehaviour
 
     public void MoveToFirstTarget()
     {
-        if (GP.targetPool.transform.childCount == 0)
-        {
-            image.enabled = false;
-            currentTarget = null;
-        }
-        else
-        {
-            image.enabled = true;
-            currentTarget = null;
-            for (int i = 0; i < GP.targetPool.transform.childCount; i++)
-            {
-                if (GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>().targetData.targetSide == targetSide)
-                {
-                    currentTarget = GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>();
-                    transform.parent.transform.position = GP.targetPool.transform.GetChild(i).position + new Vector3(0, 0.38f, -0.2f);
-                    break;
-                }
-            }
-            if (currentTarget == null) image.enabled = false;
-        }
+        //if (GP.targetPool.transform.childCount == 0)
+        //{
+        //    image.enabled = false;
+        //    currentTarget = null;
+        //}
+        //else
+        //{
+        //    image.enabled = true;
+        //    currentTarget = null;
+        //    for (int i = 0; i < GP.targetPool.transform.childCount; i++)
+        //    {
+        //        if (GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>().targetData.targetSide == targetSide)
+        //        {
+        //            currentTarget = GP.targetPool.transform.GetChild(i).GetComponent<TargetCtrl>();
+        //            transform.parent.transform.position = GP.targetPool.transform.GetChild(i).position + new Vector3(0, 0.38f, -0.2f);
+        //            break;
+        //        }
+        //    }
+        //    if (currentTarget == null) image.enabled = false;
+        //}
     }
 }
