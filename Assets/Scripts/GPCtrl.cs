@@ -75,6 +75,9 @@ public class GPCtrl : MonoBehaviour
     //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
+        if (Input.GetButton("XRI_Left_PrimaryButton")) UI.OpenPauseMenu();
+        if (Input.GetButton("XRI_Right_PrimaryButton")) UI.OpenPauseMenu();
+        if (computerMode && Input.GetKeyDown(KeyCode.Escape)) UI.OpenPauseMenu();
         if (levelState == LevelState.Before && FindObjectOfType<TargetCtrl>() == null)
         {
             LaunchLevel();
@@ -84,10 +87,7 @@ public class GPCtrl : MonoBehaviour
         {
             return;
         }
-        if (Input.GetButtonDown("XRI_Left_MenuButton")) Debug.Log("open pause menu");
-        if (Input.GetButtonDown("XRI_Right_MenuButton")) Debug.Log("open pause menu");
-        if (Input.GetButtonDown("XRI_Left_PrimaryButton")) Debug.Log("open pause menu");
-        if (Input.GetButtonDown("XRI_Right_PrimaryButton")) Debug.Log("open pause menu");
+
         _chrono += Time.deltaTime;
         TargetLevelSetup();
         if (levelState == LevelState.Ending && _chrono >= musicDuration + DataHolder.instance.GameSettings.endMusicOffset) WinGame();
