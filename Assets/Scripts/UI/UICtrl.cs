@@ -53,10 +53,10 @@ public class UICtrl : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        if (Time.timeScale != 1 || pauseMenu.transform.localScale != new Vector3(0, 0, 0)) return;
+        if (Time.timeScale != 1 || pauseMenu.transform.localScale != new Vector3(0, 0, 0) || endMenu.transform.localScale == new Vector3(1, 1, 1)) return;
         pauseMenu.gameObject.SetActive(true);
         AudioEngine.instance.musicStream.Pause();
-        pauseMenu.transform.DOScale(1, 0.3f).OnComplete(() =>
+        pauseMenu.transform.DOScale(1, 0.1f).OnComplete(() =>
         {
             Time.timeScale = 0;
         });
