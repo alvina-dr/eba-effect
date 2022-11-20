@@ -5838,6 +5838,10 @@ MonoBehaviour:
   redTargetEmissionMaterial: {fileID: 0}
   blueTargetMaterial: {fileID: 0}
   blueTargetEmissionMaterial: {fileID: 0}
+  redIndicatorMaterial: {fileID: 0}
+  blueIndicatorMaterial: {fileID: 0}
+  blueParticle: {fileID: 3754472643535557586}
+  redParticle: {fileID: 3754472643535557586}
 --- !u!1 &8886187848128484302
 GameObject:
   m_ObjectHideFlags: 0
