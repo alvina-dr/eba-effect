@@ -723,6 +723,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zeppelin
       objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.10636619
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.10632906
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6991858
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.69894177
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792017040253704043, guid: b6e1cc0d8dd67994b91dd8943e2b28f3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 162.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e1cc0d8dd67994b91dd8943e2b28f3, type: 3}
 --- !u!4 &5584266891318035070 stripped
