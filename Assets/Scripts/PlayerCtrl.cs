@@ -69,6 +69,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void OnShootRight()
     {
+        if (Time.timeScale != 1) return;
         ShootRight();
     }
 
@@ -106,6 +107,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void OnShootLeft()
     {
+        if (Time.timeScale != 1) return;
         ShootLeft();
     }
 
@@ -142,6 +144,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootComputerLeft()
     {
+        if (Time.timeScale != 1) return;
         AudioEngine.instance.PlayGunSound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();
@@ -162,6 +165,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void ShootComputerRight()
     {
+        if (Time.timeScale != 1) return;
         AudioEngine.instance.PlayGunSound(DataHolder.instance.GameSettings.gunSound, false);
         ProjectileCtrl _projectile;
         if (GP != null) _projectile = GP.Projectile.GetProjectile();

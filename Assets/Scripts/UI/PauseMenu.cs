@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ClosePauseMenu()
     {
+        if (Time.timeScale != 0 || transform.localScale != new Vector3(1, 1, 1)) return;
         Time.timeScale = 1;
         transform.DOScale(0, .3f).OnComplete(() =>
         {

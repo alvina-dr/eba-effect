@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         levelAssetArray = Resources.LoadAll<TextAsset>("Levels");
         for (int i = 0; i < levelAssetArray.Length; i++)
         {

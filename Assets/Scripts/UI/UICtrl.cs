@@ -41,16 +41,19 @@ public class UICtrl : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void ReloadLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Game");
     }
 
     public void OpenPauseMenu()
     {
+        if (Time.timeScale != 1 || pauseMenu.transform.localScale != new Vector3(0, 0, 0)) return;
         pauseMenu.gameObject.SetActive(true);
         AudioEngine.instance.musicStream.Pause();
         pauseMenu.transform.DOScale(1, 0.3f).OnComplete(() =>
