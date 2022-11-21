@@ -154,14 +154,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2722833778136508719}
-  m_LocalRotation: {x: 0, y: 0.57357645, z: -0.81915206, w: 0}
-  m_LocalPosition: {x: 0, y: -0.17, z: 0.1}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: 0, y: 0.035, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2722833778201699327}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 110, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!114 &2722833778136508715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,14 +861,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2722833778478864454}
-  m_LocalRotation: {x: 0, y: 0.57357645, z: -0.81915206, w: 0}
-  m_LocalPosition: {x: 0, y: -0.17, z: 0.1}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: 0, y: 0.035, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2722833779389167826}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 110, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!114 &2722833778478864450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,22 +1799,22 @@ PrefabInstance:
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.579228
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.40557975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.579228
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.40557975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
@@ -1829,7 +1829,7 @@ PrefabInstance:
     - target: {fileID: 1864827043138493676, guid: 7c8ca0004db44e84db98668f62e92439,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 70
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8ca0004db44e84db98668f62e92439, type: 3}
@@ -1874,22 +1874,22 @@ PrefabInstance:
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.579228
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.40557975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.579228
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.40557975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
@@ -1904,7 +1904,7 @@ PrefabInstance:
     - target: {fileID: 8671859888115063268, guid: ebe5d5643ca453e4bb18ca910313c361,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 70
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebe5d5643ca453e4bb18ca910313c361, type: 3}
