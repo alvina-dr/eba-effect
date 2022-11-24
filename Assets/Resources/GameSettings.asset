@@ -28,4 +28,6 @@ MonoBehaviour:
   gunSound: {fileID: 8300000, guid: 84608d21ed8e64a44a76b0fd9470b2fa, type: 3}
   windSound: {fileID: 8300000, guid: 7c5675ea47ffd144d828947e9ecc4847, type: 3}
   mainMenuMusic: {fileID: 8300000, guid: 8119f67e2436dba44bfad905c61f4b23, type: 3}
+  endMusicOffset: 0
   targetOffset: 0.5
+  pauseOnHit: 0.1

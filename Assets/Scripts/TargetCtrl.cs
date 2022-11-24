@@ -113,8 +113,9 @@ public class TargetCtrl : MonoBehaviour
         transform.SetParent(null);
         GP.rightTargetIndicator.MoveToFirstTarget();
         GP.leftTargetIndicator.MoveToFirstTarget();        
-        if (targetSide == TargetData.TargetSide.left) redParticle.gameObject.SetActive(true);
+        if (targetData.targetSide == TargetData.TargetSide.left) redParticle.gameObject.SetActive(true);
         else blueParticle.gameObject.SetActive(true);
+        StartCoroutine(PauseGame(DataHolder.instance.GameSettings.pauseOnHit));
         targetHinge.transform.DORotate(targetHinge.transform.eulerAngles + new Vector3(-90, 0, 0), .3f).OnComplete(() => {
             transform.DOScale(0.35f, 0.1f).OnComplete(() => {
                 transform.DOScale(0f, 0.1f).OnComplete(() => {
@@ -151,5 +152,16 @@ public class TargetCtrl : MonoBehaviour
                     });
             });
         });
+    }
+
+    public IEnumerator PauseGame(float pauseTime)
+    {
+        Time.timeScale = 0f;
+        float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
+        while (Time.realtimeSinceStartup < pauseEndTime)
+        {
+            yield return 0;
+        }
+        Time.timeScale = 1f;
     }
 }
