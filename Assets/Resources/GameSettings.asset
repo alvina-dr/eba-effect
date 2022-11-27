@@ -30,4 +30,5 @@ MonoBehaviour:
   mainMenuMusic: {fileID: 8300000, guid: 8119f67e2436dba44bfad905c61f4b23, type: 3}
   endMusicOffset: 0
   targetOffset: 0.5
-  pauseOnHit: 0.1
+  pauseOnHit: 0
+  scoreboardLength: 8

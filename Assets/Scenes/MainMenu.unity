@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.79238963, g: 0.654218, b: 0.66051537, a: 1}
+  m_IndirectSpecularColor: {r: 0.8674362, g: 0.78794473, b: 0.74687934, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5513,11 +5513,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 463273877161976814, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 913790887597791700, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Mesh
@@ -5843,11 +5838,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 1228006287837756228, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 1258173914831004606, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6318,11 +6308,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 3843356181242952318, guid: 068da5afd9b980940bf0ed9e06a3c538,
+    - target: {fileID: 3960018432572791476, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4116136549616065384, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6558,25 +6548,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 5216382164274536477, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 5226635761124459572, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 5364422524560473918, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 5398638203273646427, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Name
       value: Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5398638203273646427, guid: 068da5afd9b980940bf0ed9e06a3c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5398638203273646428, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
@@ -6633,16 +6618,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5408577414819350880, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
-    - target: {fileID: 5872808030414256603, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 5879235428707254140, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6863,26 +6838,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.014
       objectReference: {fileID: 0}
+    - target: {fileID: 7596599080723487450, guid: 068da5afd9b980940bf0ed9e06a3c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596599081324999807, guid: 068da5afd9b980940bf0ed9e06a3c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596599081524163216, guid: 068da5afd9b980940bf0ed9e06a3c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7596599082481659164, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Name
       value: IslandMediumCitadelle-CLOSE
       objectReference: {fileID: 0}
-    - target: {fileID: 8012595866735897040, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 8154359274090631975, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 41cd826dc73d8264fa82c94d2c0e2baa, type: 2}
-    - target: {fileID: 8239230650125571531, guid: 068da5afd9b980940bf0ed9e06a3c538,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c110b643f6279d548b0a0ca64ce94dfa, type: 2}
     - target: {fileID: 8690072133507686419, guid: 068da5afd9b980940bf0ed9e06a3c538,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -22961,6 +22941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722833778445154073, guid: 132b7581e6c051e4a8ae3c219922d921,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 2722833779375206165, guid: 132b7581e6c051e4a8ae3c219922d921,
         type: 3}

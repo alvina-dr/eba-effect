@@ -34,4 +34,6 @@ public class GameSettings : ScriptableObject
     public float targetOffset;
     public float pauseOnHit;
 
+    [Header("SCOREBOARD")]
+    public int scoreboardLength;
 }
