@@ -40,7 +40,6 @@ public class Scoreboard : MonoBehaviour
             {
                 string json = PlayerPrefs.GetString("scoreboard" + GPCtrl.instance.musicName); // use scoreboard-levelname
                 scoreList = JsonUtility.FromJson<ScoreboardList>(json);
-                TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
             }
         }
     }
