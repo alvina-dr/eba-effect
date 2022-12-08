@@ -27,6 +27,9 @@ public class TargetButton : MonoBehaviour
     public void LoadLevel()
     {
         DataHolder.instance.levelToLoad = levelAsset;
-        SceneManager.LoadScene("Game");
+        FindObjectOfType<MainMenu>().fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("Game");
+        });
     }
 }

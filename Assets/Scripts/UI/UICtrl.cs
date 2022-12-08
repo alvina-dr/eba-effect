@@ -15,6 +15,7 @@ public class UICtrl : MonoBehaviour
     [SerializeField] public PauseMenu pauseMenu;
     [SerializeField] public GameObject inGameMenu;
     [SerializeField] Slider healthBar;
+    [SerializeField] public Material fadeMaterial;
 
     private void Start()
     {
@@ -42,13 +43,19 @@ public class UICtrl : MonoBehaviour
     public void BackToMainMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("MainMenu");
+        });
     }
 
     public void ReloadLevel()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Game");
+        fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("Game");
+        });
     }
 
     public void OpenPauseMenu()

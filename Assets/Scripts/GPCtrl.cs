@@ -72,9 +72,12 @@ public class GPCtrl : MonoBehaviour
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
         _chrono -= offset;
+        UI.fadeMaterial.DOFade(1, 1f).OnComplete(()=>
+        {
+            UI.fadeMaterial.DOFade(0, .3f);
+        });
     }
 
-    //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
         if (Input.GetButton("XRI_Left_PrimaryButton")) UI.OpenPauseMenu();
