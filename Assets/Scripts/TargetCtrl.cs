@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class TargetCtrl : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class TargetCtrl : MonoBehaviour
     [SerializeField] Material blueIndicatorMaterial;
     [SerializeField] ParticleSystem blueParticle;
     [SerializeField] ParticleSystem redParticle;
+    [SerializeField] TextMeshPro scoreText;
 
 
     private void Start()
@@ -42,7 +44,6 @@ public class TargetCtrl : MonoBehaviour
             targetHingeRenderer.material = blueTargetMaterial;
             timingIndicator.GetComponent<MeshRenderer>().material = blueIndicatorMaterial;
         }
-        //timingIndicator.DOFillAmount(1, targetData.duration - DataHolder.instance.GameSettings.targetOffset).
         timingIndicator.transform.localScale = new Vector3(1000, 1000, 1000);
         timingIndicator.transform.DOScale(150f, targetData.duration - DataHolder.instance.GameSettings.targetOffset).SetEase(Ease.Linear).OnComplete(() =>
         {
@@ -99,9 +100,12 @@ public class TargetCtrl : MonoBehaviour
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
         int percentage = Mathf.RoundToInt(chrono / (targetData.duration - DataHolder.instance.GameSettings.targetOffset) * 100);
-        int _score = GP.Combo.ApplyMultiplierToScore(Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100), GP.Player.currentCombo);
+        int _score = Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100);
         if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
-        Debug.Log(_score);
+        scoreText.text = _score.ToString();
+        scoreText.transform.DOScale(1.5f, .3f);
+        scoreText.transform.DOLocalMove(scoreText.transform.localPosition + new Vector3(10f, Random.Range(-1f, 1f), Random.Range(-1f, 1f)), .3f);
+        _score = GP.Combo.ApplyMultiplierToScore(_score, GP.Player.currentCombo);
         GP.Player.currentScore += _score;
         GP.UI.UpdateScore(GP.Player.currentScore);
         GP.Player.health += 5; //hard value need to be variable to tweak later
