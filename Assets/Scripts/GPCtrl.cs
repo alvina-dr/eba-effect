@@ -72,10 +72,14 @@ public class GPCtrl : MonoBehaviour
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
         _chrono -= offset;
-        UI.fadeMaterial.DOFade(1, 1f).OnComplete(()=>
+        if (UI.fadeMaterial.color.a > 0)
         {
-            UI.fadeMaterial.DOFade(0, .3f);
-        });
+            UI.fadeMaterial.DOFade(1, 1f).OnComplete(() =>
+            {
+                UI.fadeMaterial.DOFade(0, .3f);
+            });
+        }
+
     }
 
     void Update()
@@ -104,8 +108,8 @@ public class GPCtrl : MonoBehaviour
         TargetCtrl _target = Instantiate(targetPrefab, targetPool.transform).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
-        rightTargetIndicator.MoveToFirstTarget();
-        leftTargetIndicator.MoveToFirstTarget();
+        //rightTargetIndicator.MoveToFirstTarget();
+        //leftTargetIndicator.MoveToFirstTarget();
     }
 
     public void TargetLevelSetup()

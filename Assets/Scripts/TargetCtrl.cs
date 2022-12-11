@@ -61,8 +61,8 @@ public class TargetCtrl : MonoBehaviour
             {
                 if (!GetComponent<BoxCollider>().enabled) return;
                 transform.SetParent(null);
-                GP.rightTargetIndicator.MoveToFirstTarget();
-                GP.leftTargetIndicator.MoveToFirstTarget();
+                //GP.rightTargetIndicator.MoveToFirstTarget();
+                //GP.leftTargetIndicator.MoveToFirstTarget();
                 transform.DOScale(0, 0.2f).OnComplete(() => {
                     GP.Player.currentCombo = 0;
                     GP.Player.scoreMultiplier = 1;
@@ -102,9 +102,16 @@ public class TargetCtrl : MonoBehaviour
         int percentage = Mathf.RoundToInt(chrono / (targetData.duration - DataHolder.instance.GameSettings.targetOffset) * 100);
         int _score = Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100);
         if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
-        scoreText.text = _score.ToString();
-        scoreText.transform.DOScale(1.5f, .3f);
-        scoreText.transform.DOLocalMove(scoreText.transform.localPosition + new Vector3(10f, Random.Range(-1f, 1f), Random.Range(-1f, 1f)), .3f);
+        TextMeshPro _scoreText = Instantiate(scoreText);
+        _scoreText.text = _score.ToString();
+        _scoreText.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z - .5f);
+        _scoreText.transform.localScale = new Vector3(.2f, .2f, .2f);
+        _scoreText.transform.DOScale(.3f, .5f);
+        _scoreText.transform.DOLocalMove(_scoreText.transform.localPosition + new Vector3(Random.Range(-.5f, .5f), Random.Range(-.5f, .5f), -2f ), .5f);
+        _scoreText.DOFade(0, .7f).OnComplete(() =>
+        {
+            Destroy(_scoreText.gameObject);
+        });
         _score = GP.Combo.ApplyMultiplierToScore(_score, GP.Player.currentCombo);
         GP.Player.currentScore += _score;
         GP.UI.UpdateScore(GP.Player.currentScore);
@@ -115,8 +122,8 @@ public class TargetCtrl : MonoBehaviour
         if (GP.Player.currentCombo > GP.Player.maxCombo) GP.Player.maxCombo = GP.Player.currentCombo;
         GetComponent<BoxCollider>().enabled = false;
         transform.SetParent(null);
-        GP.rightTargetIndicator.MoveToFirstTarget();
-        GP.leftTargetIndicator.MoveToFirstTarget();        
+        //GP.rightTargetIndicator.MoveToFirstTarget();
+        //GP.leftTargetIndicator.MoveToFirstTarget();        
         if (targetData.targetSide == TargetData.TargetSide.left) redParticle.gameObject.SetActive(true);
         else blueParticle.gameObject.SetActive(true);
         StartCoroutine(PauseGame(DataHolder.instance.GameSettings.pauseOnHit));

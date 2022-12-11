@@ -10,14 +10,6 @@ public class TargetButton : MonoBehaviour
 
     public UnityEvent onShootEvent;
     public TextAsset levelAsset;
-    [SerializeField] float Scalevalue = 20f;
-
-
-   void Start()
-    {
-        //transform.DOScale(Scalevalue, 0.1f);
-
-    }
 
     public void OnShoot()
     {
