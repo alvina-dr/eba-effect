@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class ButtonLevel : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class ButtonLevel : MonoBehaviour
     public void LoadLevel()
     {
         DataHolder.instance.levelToLoad = levelAsset;
-        SceneManager.LoadScene("Game");
+        FindObjectOfType<MainMenu>().fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("Game");
+        });
     }
 
 }

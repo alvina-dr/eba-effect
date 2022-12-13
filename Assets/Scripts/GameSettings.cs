@@ -32,5 +32,8 @@ public class GameSettings : ScriptableObject
 
     [Header("OFFSET TARGET LIFE")]
     public float targetOffset;
+    public float pauseOnHit;
 
+    [Header("SCOREBOARD")]
+    public int scoreboardLength;
 }

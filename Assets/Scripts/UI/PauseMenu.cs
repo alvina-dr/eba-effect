@@ -21,11 +21,19 @@ public class PauseMenu : MonoBehaviour
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene("Game");
+        Time.timeScale = 1;
+        GPCtrl.instance.UI.fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("Game");
+        });
     }
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        GPCtrl.instance.UI.fadeMaterial.DOFade(1, .3f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("MainMenu");
+        });
     }
 }

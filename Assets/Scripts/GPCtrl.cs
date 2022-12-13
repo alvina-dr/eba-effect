@@ -31,6 +31,7 @@ public class GPCtrl : MonoBehaviour
     public float offset;
     public float bpm;
     public float musicDuration;
+    public string musicName;
     public TargetIndicator rightTargetIndicator;
     public TargetIndicator leftTargetIndicator;
     [SerializeField] public GameObject targetPool;
@@ -71,9 +72,16 @@ public class GPCtrl : MonoBehaviour
         levelState = LevelState.Before;
         AudioEngine.instance.PlayMusic(null, false);
         _chrono -= offset;
+        if (UI.fadeMaterial.color.a > 0)
+        {
+            UI.fadeMaterial.DOFade(1, 1f).OnComplete(() =>
+            {
+                UI.fadeMaterial.DOFade(0, .3f);
+            });
+        }
+
     }
 
-    //ici variable du fichier csv, on importe depuis gp ctrl
     void Update()
     {
         if (Input.GetButton("XRI_Left_PrimaryButton")) UI.OpenPauseMenu();
@@ -100,8 +108,8 @@ public class GPCtrl : MonoBehaviour
         TargetCtrl _target = Instantiate(targetPrefab, targetPool.transform).GetComponent<TargetCtrl>();
         _target.targetData = _targetData;
         _target.transform.position = _targetData.startPosition;
-        rightTargetIndicator.MoveToFirstTarget();
-        leftTargetIndicator.MoveToFirstTarget();
+        //rightTargetIndicator.MoveToFirstTarget();
+        //leftTargetIndicator.MoveToFirstTarget();
     }
 
     public void TargetLevelSetup()

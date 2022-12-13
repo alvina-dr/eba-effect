@@ -26,6 +26,7 @@ public class CSVReader : MonoBehaviour
         data.RemoveAt(data.Count - 1);
         
         GPCtrl.instance.levelMusic = Resources.Load<AudioClip>("Musics/"+data[0]);
+        GPCtrl.instance.musicName = data[0];
         data.RemoveAt(0);
         
         if (data[0] != null) GPCtrl.instance.offset = float.Parse(data[0])/1000;
