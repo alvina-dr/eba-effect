@@ -45,7 +45,6 @@ public class TargetCtrl : MonoBehaviour
             timingIndicator.GetComponent<MeshRenderer>().material = blueIndicatorMaterial;
         }
         timingIndicator.transform.localScale = new Vector3(1000, 1000, 1000);
-        Debug.Log(targetData.duration - DataHolder.instance.GameSettings.targetOffset);
         timingIndicator.transform.DOScale(150f, targetData.duration/2).SetEase(Ease.Linear).OnComplete(() =>
         {
             timingIndicator.transform.localScale = new Vector3(1, 1, 1);
@@ -100,16 +99,8 @@ public class TargetCtrl : MonoBehaviour
     {
         GP.Player.currentCombo++;
         GP.UI.UpdateCombo(GP.Player.currentCombo);
-        int percentage =  Mathf.RoundToInt(chrono / (targetData.duration) * 100);
+        int percentage =  Mathf.RoundToInt(chrono / (targetData.duration/2) * 100);
         int _scoreBeforeSideMultiplier = 0;
-        if (percentage > 100)
-        {
-            Debug.Log("too late : " + (100 - (percentage-100)));
-
-        } else
-        {
-            Debug.Log("too early : " + percentage);
-        }
         if (percentage > 100)
         {
             _scoreBeforeSideMultiplier = Mathf.RoundToInt((100 - (percentage - 100)) * (DataHolder.instance.GameSettings.maxPointPerTarget - DataHolder.instance.GameSettings.minPointPerTargetEnd) / 100) + DataHolder.instance.GameSettings.minPointPerTargetEnd;
@@ -117,10 +108,8 @@ public class TargetCtrl : MonoBehaviour
         {
             _scoreBeforeSideMultiplier = Mathf.RoundToInt(percentage * (DataHolder.instance.GameSettings.maxPointPerTarget - DataHolder.instance.GameSettings.minPointPerTargetStart) / 100) + DataHolder.instance.GameSettings.minPointPerTargetStart;
         }
-        //int _score = Mathf.RoundToInt(DataHolder.instance.GameSettings.maxPointPerTarget * percentage / 100);
         int _score = _scoreBeforeSideMultiplier;
-        if (targetSide == targetData.targetSide) Debug.Log("good side"); _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
-        Debug.Log("this is the score : " + _score);
+        if (targetSide == targetData.targetSide) _score *= DataHolder.instance.GameSettings.goodSideMultiplier;
         TextMeshPro _scoreText = Instantiate(scoreText);
         _scoreText.text = _score.ToString();
         _scoreText.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z - .5f);
