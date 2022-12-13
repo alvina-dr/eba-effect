@@ -16,6 +16,8 @@ public class GameSettings : ScriptableObject
 
     [Header("SCORE")]
     public int maxPointPerTarget = 120;
+    public int minPointPerTargetStart = 20;
+    public int minPointPerTargetEnd = 50;
 
     [Header("COMBOS | x = threshold, y = multiplier, z = health gain")]
     public List<Vector3Int> comboTable;
