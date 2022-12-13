@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
             GameObject _button = Instantiate(buttonLevelPrefab, buttonLevelList.transform);
             float Yposition = i * 110 * -1;
             _button.transform.localPosition = new Vector3(_button.transform.localPosition.x, Yposition, _button.transform.localPosition.z);
-            _button.GetComponentInChildren<TextMeshProUGUI>().text = levelAssetArray[i].name;
+            _button.GetComponentInChildren<TextMeshPro>().text = levelAssetArray[i].name;
             _button.GetComponent<TargetButton>().levelAsset = levelAssetArray[i];
         }
         AudioEngine.instance.PlayMusic(DataHolder.instance.GameSettings.mainMenuMusic, true);
