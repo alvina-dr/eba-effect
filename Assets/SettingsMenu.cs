@@ -9,6 +9,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider musicSlider;
     public Slider SFXSlider;
+    public Slider gunSlider;
 
     public void Start()
     {
@@ -17,7 +18,10 @@ public class SettingsMenu : MonoBehaviour
 
         audioMixer.GetFloat("SFX", out float SFXValueForSlider);
         SFXSlider.value = SFXValueForSlider;
-        
+
+        audioMixer.GetFloat("Gun", out float gunValueForSlider);
+        gunSlider.value = gunValueForSlider;
+
     }
 
     public void SetMusicVolume(float volume)
@@ -28,6 +32,11 @@ public class SettingsMenu : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFX", volume);
+    }
+
+    public void SetGunVolume(float volume)
+    {
+        audioMixer.SetFloat("Gun", volume);
     }
 
     public void ClearSavedData()

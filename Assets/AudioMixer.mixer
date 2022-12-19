@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8401351099980613640
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5d33829b7eee02b4d90a373aa5865ed5
+  m_EffectName: OculusSpatializerReflection
+  m_MixLevel: d4c27e29c9016b54b957c9a11daebafd
+  m_Parameters:
+  - m_ParameterName: GScale
+    m_GUID: 6f95ed9dd7c33fd4a9027b2517de394e
+  - m_ParameterName: E.Rflt On
+    m_GUID: 2eb822c2ec1d03845a9a637f3cc4374a
+  - m_ParameterName: E.Rflt Rev On
+    m_GUID: 43a8d143bf5e40d44ab52f5c89c28b2f
+  - m_ParameterName: Room X
+    m_GUID: 9052f8778b2ca9347b92918722a3a999
+  - m_ParameterName: Room Y
+    m_GUID: ccf2f63a1c130674f9a512d3f4bf4f1b
+  - m_ParameterName: Room Z
+    m_GUID: 569f00895c725ad49bdb0c0fd28c0100
+  - m_ParameterName: Left
+    m_GUID: 328768cda7226bd47a97f44dcf39c351
+  - m_ParameterName: Right
+    m_GUID: 473d971914bcd7f47aabcde4ec0e9ac1
+  - m_ParameterName: Up
+    m_GUID: dbe29d6dde90d004da9e17d5354bd709
+  - m_ParameterName: Down
+    m_GUID: 5077cc41fa2156747bf3ac3354450a31
+  - m_ParameterName: Behind
+    m_GUID: 530e2692c508ac14fa2999a7097d4358
+  - m_ParameterName: Front
+    m_GUID: 7c18be06bff43b04887b8b6606a8e56d
+  - m_ParameterName: Shared Rev Min
+    m_GUID: d6a821e10bd4edc4e909f600cc5e6f99
+  - m_ParameterName: Shared Rev Max
+    m_GUID: 0c283c5b310ab02478333f0bad27cfab
+  - m_ParameterName: Shared Rev Wet
+    m_GUID: dad59676e6496374fab8f432ae798458
+  - m_ParameterName: Prop Quality
+    m_GUID: 883f84164ad463a409754335381dff32
+  - m_ParameterName: Voice Limit
+    m_GUID: 46420c5c2f505d9448cca3634a521e10
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-6930238712081646685
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -43,7 +91,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 527c8047e843a2644900f80b3aea1e98
+    name: SFX
+  - guid: 57d0f2e4f9da41045aaf2e0c1ddf8950
+    name: Gun
+  - guid: 372781b9b5859c9448c671765f88f0b4
+    name: Music
   m_AudioMixerGroupViews:
   - guids:
     - 967263955394422468c1b89aa825ca26
@@ -98,7 +152,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 16ee3c5e3faf606448630f8a79a0cf99
-  m_FloatValues: {}
+  m_FloatValues:
+    372781b9b5859c9448c671765f88f0b4: 0.1080026
   m_TransitionOverrides: {}
 --- !u!243 &261378985238367852
 AudioMixerGroupController:
@@ -167,6 +222,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -830665589946378183}
+  - {fileID: -8401351099980613640}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
