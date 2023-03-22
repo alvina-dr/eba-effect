@@ -14,6 +14,6 @@ SETUP GUIDELINES
 - There might be some problems with building apk on this Unity version, have fun with it, just know there are workaround (hint : https://forum.unity.com/threads/cant-build-for-android.1306098/)
 - DOTween free version is used on the project, you should download the plugin via the Unity Assets Store.
 
-By Naja Dalmagne, Alvina Damasio--Razafiarizaka, Enzo Duret and Gaëtan Jestin.
+By Gaëtan Jestin, Alvina Damasio--Razafiarizaka, Enzo Duret and Naja Dalmagne.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
