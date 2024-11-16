@@ -2,7 +2,6 @@
 
 ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/alvina-dr/eba-effect?authorFilter=alvina-dr&style=for-the-badge)
 
 Hi there. EBA Effect is a virtual reality game where the player needs to shoot at targets in rhythm with the music. It was made in a little bit more that six weeks on Unity by a team of four. This project was a true delight to work on and a beautiful experience for all of us.
 
